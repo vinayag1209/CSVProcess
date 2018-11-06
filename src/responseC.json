@@ -1,0 +1,211 @@
+{
+    "tLCarrierKEY": 64,
+    "sCACCD": "RET8",
+    "motorCarrierNB": "453TST8",
+    "uSDOTNB": 231528,
+    "activeStatusIN": "Y",
+    "relationshipOwnerID": "TESTRELATION",
+    "driverQT": 1,
+    "carrierNM": "DDE Test Carrier8",
+    "webAddressTX": "http://test.com",
+    "totalTractorQT": 1,
+    "tLCarrierFleetTypeKEY": 1,
+    "tLCarrierSafetyRatingTypeKEY": 1,
+    "carrierFleetTypeNM": "Private Fleet",
+    "carrierSafetyRatingTypeNM": "Satisfactory",
+    "profileVerifiedByID": "TESTID",
+    "profileVerifiedTS": "2018-05-31 18:42:56.3466667",
+    "statusChangeTS": "2018-05-31 18:42:56.3466667",
+    "tLCarrierLane": [
+        {
+            "permanentLaneIN": "Y",
+            "tllaneKEY": 16,
+            "tlcarrierLaneKEY": 9,
+            "tlcarrierKEY": 64,
+            "tlcarrierLaneTrailer": [
+                {
+                    "trailerAvailableQT": 2,
+                    "estimatedCostAMT": 5000,
+                    "lastDataCollectionDT": "2018-05-31",
+                    "trailerLengthinFeetQT": 53,
+                    "tlcarrierLaneTrailerKEY": 9,
+                    "tltrailerClassKEY": 2,
+                    "tlcarrierLaneKEY": 9,
+                    "tlcarrierLaneTrailerDOW": [
+                        {
+                            "dayOfWeekNM": "Tuesday",
+                            "dayOfWeekNB": 3,
+                            "dayOfWeekAbbr2CD": null,
+                            "tlcarrierLaneTrailerKEY": 9,
+                            "dowrunQT": 2,
+                            "tlcarrierLaneTrailerDOWKEY": 7
+                        }
+                    ],
+                    "tltrailerTypeNM": "Van",
+                    "tltrailerSubTypeNM": "98\" Swing Door",
+                    "tltrailerSubTypeKEY": 3,
+                    "tltrailerTypeKEY": 5
+                }
+            ],
+            "tllane": {
+                "postalAreaOriginKEY": 33160,
+                "postalAreaDestinationKEY": 8,
+                "postalAreaOrigin": {
+                    "postalAreaKEY": 33160,
+                    "postalCD": "00617",
+                    "cityNM": "BARCELONETA",
+                    "stateCD": "PR",
+                    "countryCD": "US",
+                    "latitude": 18.445147,
+                    "longitude": -66.559696
+                },
+                "postalAreaDestination": {
+                    "postalAreaKEY": 8,
+                    "postalCD": "44321",
+                    "cityNM": "COPLEY",
+                    "stateCD": "OH",
+                    "countryCD": "US",
+                    "latitude": 41.0875,
+                    "longitude": -81.6364
+                },
+                "tllaneKEY": 16
+            }
+        }
+    ],
+    "tLCarrierAddress": [
+        {
+            "tLCarrierAddressKEY": 52,
+            "tLCarrierKEY": 64,
+            "tLAddressKEY": 52,
+            "localDriverIN": "Y",
+            "dropTrailerIN": "N",
+            "hazmatCertifiedIN": "Y",
+            "addressTypeKEY": 2,
+            "carrierFacilityNM": "TEST facility",
+            "squareFootageQT": 50,
+            "addressTypeSequenceQT": 1,
+            "addressTypeNM": "Home Office",
+            "streetAddressLine1TX": "124 Test St",
+            "streetAddressLine2TX": "",
+            "cityNM": "Oklahoma City",
+            "stateProvinceCD": "CA",
+            "countryCD": "US",
+            "countyNM": "Oklahoma County",
+            "postalCD": "73123",
+            "postalPlus4CD": "1234",
+            "tLCarrierContact": [
+                {
+                    "emailAddressTX": "dudleyw@gmail.com",
+                    "phoneNB": "405-233-8893",
+                    "contactFirstNM": "Dudley",
+                    "contactLastNM": "Wrong",
+                    "mobilePhoneNB": "405-233-8911",
+                    "contactSequenceOrderNB": 1,
+                    "contactRoleNM": "Dispatch",
+                    "tlcarrierAddressKEY": 50,
+                    "tlcarrierContactKEY": 31,
+                    "tlcontactRoleKEY": 1
+                }
+            ]
+        },
+        {
+            "tLCarrierAddressKEY": 56,
+            "tLCarrierKEY": 64,
+            "tLAddressKEY": 56,
+            "localDriverIN": "Y",
+            "dropTrailerIN": "N",
+            "hazmatCertifiedIN": "Y",
+            "addressTypeKEY": 2,
+            "carrierFacilityNM": "TEST facility2",
+            "squareFootageQT": 60,
+            "addressTypeSequenceQT": 1,
+            "addressTypeNM": "Home Office",
+            "streetAddressLine1TX": "124 Test St",
+            "streetAddressLine2TX": "",
+            "cityNM": "Oklahoma City",
+            "stateProvinceCD": "MN",
+            "countryCD": "US",
+            "countyNM": "Oklahoma County",
+            "postalCD": "73123",
+            "postalPlus4CD": "1234",
+            "tLCarrierContact": [
+                {
+                    "emailAddressTX": "dudleyr@gmail.com",
+                    "phoneNB": "405-233-4444",
+                    "contactFirstNM": "Dudley",
+                    "contactLastNM": "Right",
+                    "mobilePhoneNB": "405-233-5555",
+                    "contactSequenceOrderNB": 1,
+                    "contactRoleNM": "Dispatch",
+                    "tlcarrierAddressKEY": 55,
+                    "tlcarrierContactKEY": 35,
+                    "tlcontactRoleKEY": 1
+                }
+            ]
+        },
+        {
+            "tLCarrierAddressKEY": 57,
+            "tLCarrierKEY": 64,
+            "tLAddressKEY": 57,
+            "localDriverIN": "Y",
+            "dropTrailerIN": "N",
+            "hazmatCertifiedIN": "Y",
+            "addressTypeKEY": 2,
+            "carrierFacilityNM": "TEST facility3",
+            "squareFootageQT": 60,
+            "addressTypeSequenceQT": 1,
+            "addressTypeNM": "Home Office",
+            "streetAddressLine1TX": "124 Test St",
+            "streetAddressLine2TX": "",
+            "cityNM": "Oklahoma City",
+            "stateProvinceCD": "NV",
+            "countryCD": "US",
+            "countyNM": "Oklahoma County",
+            "postalCD": "73123",
+            "postalPlus4CD": "1234",
+            "tLCarrierContact": [
+                {
+                    "emailAddressTX": "dudleyr@gmail.com",
+                    "phoneNB": "405-233-4444",
+                    "contactFirstNM": "Dudley",
+                    "contactLastNM": "Right",
+                    "mobilePhoneNB": "405-233-5555",
+                    "contactSequenceOrderNB": 1,
+                    "contactRoleNM": "Dispatch",
+                    "tlcarrierAddressKEY": 56,
+                    "tlcarrierContactKEY": 36,
+                    "tlcontactRoleKEY": 1
+                }
+            ]
+        }
+    ],
+    "tLCarrierCertification": [
+        {
+            "certificationTypeNM": "California Carbon Compliant",
+            "tlcarrierCertificationKEY": 24,
+            "tlcarrierKEY": 64,
+            "tlcarrierCertificationTypeKEY": 1
+        }
+    ],
+    "tLCarrierDutyClassification": [
+        {
+            "tlgvwrdutyClassificationTypeKEY": 1,
+            "gvwrdutyClassificationTypeNM": "Light",
+            "tlcarrierKEY": 64,
+            "tlcarrierDutyClassificationKEY": 22
+        }
+    ],
+    "tLCarrierTrailer": [
+        {
+            "trailerQT": 2,
+            "trailerLengthinFeetQT": 53,
+            "tltrailerClassKEY": 1,
+            "tlcarrierKEY": 64,
+            "tlcarrierTrailerKEY": 7,
+            "tltrailerTypeNM": "Van",
+            "tltrailerSubTypeNM": "102\" Swing Door",
+            "tltrailerSubTypeKEY": 1,
+            "tltrailerTypeKEY": 5
+        }
+    ]
+}

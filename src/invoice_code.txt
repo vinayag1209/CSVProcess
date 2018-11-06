@@ -1,0 +1,649 @@
+<html>
+<head>
+</head>
+<body bgcolor="#FFFFFF">
+#foreach($comment in $loadCommentList)
+	#set ($rtDueDate = "NULL")
+	#if($!comment.Qualifier.QualifierName== "Payment Terms")
+		#if ($comment.CommentValue == "Net 60")
+			#set ($YearMonth = $date.format("yyyy-MM",$!invoice.DateTime_Transmitted))
+			#set ($DayStr = $date.format("dd",$!invoice.DateTime_Transmitted))
+			#set ($DayInt = 0)
+			#set($DayInt= $DayInt.parseInt($DayStr))
+			#set ($DayInt = $DayInt + 60)
+			#set ($rtDueDate = ${YearMonth}-$DayInt)
+		#elseif ($comment.CommentValue == "Net 45")
+			#set ($YearMonth = $date.format("yyyy-MM",$!invoice.DateTime_Transmitted))
+			#set ($DayStr = $date.format("dd",$!invoice.DateTime_Transmitted))
+			#set ($DayInt = 0)
+			#set($DayInt= $DayInt.parseInt($DayStr))
+			#set ($DayInt = $DayInt + 45)
+			#set ($rtDueDate = ${YearMonth}-$DayInt)
+		#elseif ($comment.CommentValue == "Net 35")
+			#set ($YearMonth = $date.format("yyyy-MM",$!invoice.DateTime_Transmitted))
+			#set ($DayStr = $date.format("dd",$!invoice.DateTime_Transmitted))
+			#set ($DayInt = 0)
+			#set ($DayInt = $DayInt.parseInt($DayStr))
+			#set ($DayInt = $DayInt + 35)
+			#set ($rtDueDate = ${YearMonth}-$DayInt)
+		#elseif ($comment.CommentValue == "Net 30")
+			#set ($YearMonth = $date.format("yyyy-MM",$!invoice.DateTime_Transmitted))
+			#set ($DayStr = $date.format("dd",$!invoice.DateTime_Transmitted))
+			#set ($DayInt = 0)
+			#set($DayInt= $DayInt.parseInt($DayStr))
+			#set ($DayInt = $DayInt + 30)
+			#set ($rtDueDate = ${YearMonth}-$DayInt)
+		#elseif ($comment.CommentValue == "Net 21")
+			#set ($YearMonth = $date.format("yyyy-MM",$!invoice.DateTime_Transmitted))
+			#set ($DayStr = $date.format("dd",$!invoice.DateTime_Transmitted))
+			#set ($DayInt = 0)
+			#set($DayInt= $DayInt.parseInt($DayStr))
+			#set ($DayInt = $DayInt + 21)
+			#set ($rtDueDate = ${YearMonth}-$DayInt)
+		#elseif ($comment.CommentValue == "Net 15")
+			#set ($YearMonth = $date.format("yyyy-MM",$!invoice.DateTime_Transmitted))
+			#set ($DayStr = $date.format("dd",$!invoice.DateTime_Transmitted))
+			#set ($DayInt = 0)
+			#set($DayInt= $DayInt.parseInt($DayStr))
+			#set ($DayInt = $DayInt + 15)
+			#set ($rtDueDate = ${YearMonth}-$DayInt)
+		#elseif ($comment.CommentValue == "Net 14")
+			#set ($YearMonth = $date.format("yyyy-MM",$!invoice.DateTime_Transmitted))
+			#set ($DayStr = $date.format("dd",$!invoice.DateTime_Transmitted))
+			#set ($DayInt = 0)
+			#set($DayInt= $DayInt.parseInt($DayStr))
+			#set ($DayInt = $DayInt + 14)
+			#set ($rtDueDate = ${YearMonth}-$DayInt)
+		#elseif ($comment.CommentValue == "Net 10")
+			#set ($YearMonth = $date.format("yyyy-MM",$!invoice.DateTime_Transmitted))
+			#set ($DayStr = $date.format("dd",$!invoice.DateTime_Transmitted))
+			#set ($DayInt = 0)
+			#set($DayInt= $DayInt.parseInt($DayStr))
+			#set ($DayInt = $DayInt + 10)
+			#set ($rtDueDate = ${YearMonth}-$DayInt)
+		#elseif ($comment.CommentValue == "Net 7")
+			#set ($YearMonth = $date.format("yyyy-MM",$!invoice.DateTime_Transmitted))
+			#set ($DayStr = $date.format("dd",$!invoice.DateTime_Transmitted))
+			#set ($DayInt = 0)
+			#set($DayInt= $DayInt.parseInt($DayStr))
+			#set ($DayInt = $DayInt + 7)
+			#set ($DayInt = $DayInt + 7)
+			#set ($rtDueDate = ${YearMonth}-$DayInt)
+		#elseif ($comment.CommentValue == "CASH")
+			#set ($rtDueDate = "Due Upon Receipt")
+		#end
+		#if ($rtDueDate != "NULL")
+			#break
+		#end
+	#end
+#end
+#if ($rtDueDate == "NULL")
+	#set ($rtDueDate = "Due Upon Receipt")
+#end
+
+#set ($pcTot = 0)
+#set ($huTot = 0)
+#set ($lbTot = 0)
+#set ($volTot = 0)
+#set ($hupcTot = 0)
+#if($tOrderLineList)
+	#foreach($commodity in $tOrderLineList)
+		#set($pcTot= $pcTot + $!commodity.pieceCount)
+		#set($huTot= $huTot + $!commodity.HandlingUnitCount.value)
+		#set($lbTot= $lbTot + $!commodity.weightGross.Value)
+		#set($lbUOM= $!commodity.weightGross.uom)
+		#set($volTot= $volTot + $!commodity.VolumeGross.value)
+		#if($commodity.handlingUnitCount > 0)
+			#set($hupcTot= $hupcTot + $!commodity.handlingUnitCount)
+		#elseif($commodity.pieceCount > 0)
+			#set($hupcTot= $hupcTot + $!commodity.pieceCount)
+		#end	
+	#end
+#end
+
+#if($hupcTot == 0)
+	#set ($hupcTot = "")
+#end
+
+#if ($loadList)
+	#foreach($load in $loadList)
+	    #set($myLoadNum = $load.loadNum)
+		#set($myWgtTotal = $load.weightGrossTot.base)
+		#set($myHUTotal = $load.handlingUnitCountTot)
+		#set($myBOL = $load.bolNum)
+		#foreach($stop in $load.stops)
+			#if ($stop.dataValue_StopType == "Pickup" && $stop.StopNum == "1")				 
+			    #if ($!stop.schedDateTimeActualArrival)
+				    #set($myDateShipped = $stop.schedDateTimeActualDeparture)
+			    #else
+				    #set($myDateShipped = $stop.schedDateTimeExpectedDeparture)
+			    #end
+		    #end
+			#if ($stop.dataValue_StopType == "Delivery")
+				#if($!stop.schedDateTimeActualDeparture)
+					#set($myDateDelivered = $stop.schedDateTimeActualDeparture)
+					#set($myDueDate = $stop.schedDateTimeActualDeparture.plusDays(15))
+				#else
+					#set($myDateDelivered = $stop.schedDateTimeExpectedDeparture)
+					#set($myDueDate = $stop.schedDateTimeExpectedDeparture.plusDays(15))
+				#end
+			#end 
+		#end				
+	#end
+#end
+
+#set($amountDue = $math.sub($invoice.currencyNetChargeTot.amount,$invoice.currencyPaidTot.amount))
+
+#if ($loadList)
+	#foreach($load in $loadList)
+		 #set($equipmentType = $load.equipmentNum)
+	#end
+#end
+#if($vw3g_Invoice_ManifestChild_Template1List)
+	#foreach($object in $vw3g_Invoice_ManifestChild_Template1List)
+		#set($clientName = $object.tradingPartnerNameClient)
+	#end
+#end
+
+#set($todayDate = $!date.format('MM-dd-yyyy', $date))
+#set($dueDate  = $!date.format('MM-dd-yyyy', $!myDueDate.toDate()))
+#set($calToday=$date.toCalendar($date))
+#set($cal1=$date.toCalendar($myDueDate.toDate()))
+#set($cal1CompareToday=$cal1.compareTo($calToday))
+
+#if($cal1CompareToday > 0) 
+	#set ($dueDatePrint = $dueDate)
+#else
+	#set ($dueDatePrint = "DUE UPON RECEIPT")
+#end
+
+#if($invoice.dataValue_InvoiceType == "Original")
+	#set($invoiceType  ="Original")
+#elseif($invoice.dataValue_InvoiceType == "Supplemental")
+	#if($!invoice.currencyNetChargeTot.amount > 0)
+		#set($invoiceType = "Supplemental")
+	#elseif($!invoice.currencyNetChargeTot.amount < 0)
+		#set($invoiceType = "Credit Memo")
+	#end
+#elseif($invoice.dataValue_InvoiceType == "CreditMemo")
+	#set($invoiceType = "Credit Memo")
+#end
+
+#set($clientName = $tradingPartnerClient.tradingPartnerName)
+
+<table cellspacing="0" cellpadding="0" border ="0" style="font-family: arial" align="left">
+	<tr>
+		<td colspan="2" style="font-size:6;">
+		<!--#graphicImage("HTMLImgEmbedded", $!masterTradingPartner.graphicImageIdLogo) <br/> -->
+		<!-- PO BOX 7914 <br/>
+		OVERLAND PARK, KS 66207 -->
+		<img style="height:70px;" src="http://my.yrc.com/images/yrcf_freight-solutions-stack-sm.png" width="75%" > <br/>
+		</td>
+		<td colspan="6">
+			<table cellspacing="0" cellpadding="0" border =".75" align="right">
+				<tr>
+					<td style="font-size:10; font-weight:bold" align="CENTER">
+						$!invoiceType <br/>
+						Invoice Number: &nbsp;&nbsp;  $!invoice.invoiceNum <br/>
+						Amount Due: $number.currency($!invoice.currencyNetChargeTot.amount) <br/>
+					</td>
+					<td align="CENTER"><table cellspacing="0" cellpadding="0" border ="0"> <tr><td style="font-size:3">&nbsp;</td></tr>
+							<tr>
+								<td style="font-size:8" align="center"><b><font color="gray">$!invoice.invoiceNum <br/></font></b></td>
+								<td>#if($!invoice.invoiceNum) #barCode("HTMLImgFile", "Code128", 100, 30, $!invoice.invoiceNum) #end</td>
+							</tr>
+							<tr><td style="font-size:3">&nbsp;</td></tr>
+						</table></td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td colspan="8">  </td>
+	</tr>
+	<tr>
+		<td colspan="3" style="font-size:9;" align="left">
+			$!clientName<br/>
+			Bill To:  $!locBillTo.addrName<br/>
+			$!locBillTo.addr1 &nbsp;
+			$!locBillTo.addr2<br/>
+			$!locBillTo.cityName,&nbsp; $!locBillTo.state.stateCode &nbsp; $!locBillTo.postalCode<br/>
+			$!contactBillTo.email	
+		</td>
+		<td colspan="2" style="font-size:9" align="left"><b>Mail Payments To : </b><br>
+								<h5>YRC Freight<br>
+									PO BOX 775556<br>
+									CHICAGO, IL 60677-5556</h5></td>
+		</td>
+		<td colspan="3" align="right" style="font-size:10;">Payment due date: $!dueDatePrint<br/>
+			Shipment Date: $!date.format('MM-dd-yyyy',$!date.toDate("yyyy-MM-dd", $!myDateShipped))</td>
+	</tr>
+	<tr>
+		<td colspan="6"></td>
+		<td colspan="2" style="font-size:10;" align="right"> TaxID : 34-0492670</td>
+	</tr>
+	<tr>
+		<td colspan="6"></td>
+		<td colspan="2" style="font-size:10;" align="right"> Date Delivered : $!date.format('MM-dd-yyyy',$!date.toDate("yyyy-MM-dd", $!myDateDelivered)) </td>
+	</tr>
+
+</table>
+<br>
+
+<table cellspacing="0" cellpadding="0" border ="0.75" style="font-family: arial" align="left">
+	<tr>
+		<td>
+			<table cellspacing=".25" cellpadding="0" border =".75" style="font-family: arial;">
+				<tr>
+					<th colspan="2" style="font-size:10; font-weight:bold">&nbsp;Shipping Details</th>
+				</tr>
+				<tr>
+					<th colspan="2" style="font-size:10"><b>&nbsp;Quote ID: </b>$!tOrder.ordNum.replaceAll("[A-Za-z]","") &nbsp;</th>
+				</tr>
+				<tr>
+					<th style="font-size:9; font-weight:bold" align="center">&nbsp;Shipper</th>
+					<th style="font-size:9; font-weight:bold" align="center">&nbsp;Consignee</th>
+				</tr> 
+				<tr>
+					<td style="font-size:10; text-align:center;">$!tOrder.locOrig.addrName <br />$!tOrder.locOrig.addr1 <br />$!tOrder.locOrig.cityName,&nbsp; $!tOrder.locOrig.state.stateCode &nbsp; $!tOrder.locOrig.postalCode</td>
+					<td style="font-size:10; text-align:center;">$!tOrder.locDest.addrName<br />$!tOrder.locDest.addr1 <br />$!tOrder.locDest.cityName,&nbsp; $!tOrder.locDest.state.stateCode&nbsp; $!tOrder.locDest.postalCode</td>
+				</tr> 
+			</table>
+		</td>
+	</tr>	
+</table>
+<br>
+<table cellspacing="0" cellpadding="0" border ="0" style="font-family: arial" align="left">
+	<tr>
+		<td>
+			<table cellspacing=".25" cellpadding="0" border =".75" style="font-family: arial">
+				<tr>
+						<th colspan="4" style="font-size:10; font-weight:bold">&nbsp;Commodity Details</th>
+				</tr>
+				<tr>
+						<th style="font-size:9; font-weight:bold" align="center">Pcs</th>
+						<th style="font-size:9; font-weight:bold" align="center">Description of Articles</th>
+						<th style="font-size:9; font-weight:bold" align="center">Class/Code</th>
+						<th style="font-size:9; font-weight:bold" align="center">Weight &nbsp; ($!lbUOM) </th>
+						<!-- <th style="font-weight:bold">Charges</th> -->
+				</tr> 
+				<!-- <tr>
+					<td>contract name</td>
+					<td>FILLER</td>
+					<td>FILLER</td>
+					<td></td>
+					<td></td>
+				</tr> -->
+				#if($tOrderLineList)
+					#foreach($commodity in $tOrderLineList)
+						<tr>
+						#if($commodity.handlingUnitCount > 0)
+							<td style="font-size:10" align="center" >$!commodity.handlingUnitCount</td>		
+						#elseif($commodity.pieceCount > 0)
+							<td style="font-size:10" align="center" >$!commodity.pieceCount</td>	
+						#else	
+							<td style="font-size:10" align="center" >$!commodity.pieceCount</td>
+						#end	
+							<td style="font-size:10" align="center" >$!commodity.description</td>	
+							<td style="font-size:10" align="center" > $!commodity.nmfcCode</td>							
+							<td style="font-size:10" align="center" > $number.format("##,000.00",$!commodity.weightGross.Value)</td>
+						</tr>
+					#end
+				#end
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<table cellspacing=".25" cellpadding="0" border="0.75" style="font-family: arial">
+				<tr>
+					<td colspan="2" align="center" style="font-size:9; font-weight:bold; border: 5px solid;">Total Pieces</td>
+					<td  colspan="2" align="center" style="font-size:9; font-weight:bold; border: 5px solid;">Total Weight &nbsp; ($!lbUOM) </td>
+				</tr>
+				<tr>
+					<td colspan="2" align="center" style="font-size:10 ; border: 5px solid;">$!hupcTot</td>
+					<td  colspan="2" align="center" style="font-size:10 ; border: 5px solid;">$number.format("#0,000.00",$!lbTot)  </td>
+				</tr>
+			</table>
+		<td>
+	</tr>
+</table>
+<br>
+<table cellspacing="0" cellpadding="0" border ="0" style="font-family: arial">
+	<tr>
+		<td>
+			<table cellspacing=".25" cellpadding="0" border =".75" style="font-family: arial">
+				<tr>
+					<th colspan="4" style="font-size:10; font-weight:bold">&nbsp;Charge Details</th>
+				</tr>
+				<tr>
+					<td style="font-size:9; font-weight:bold" align="center"><b>Charge type</b></td>					 
+					<td style="font-size:9; font-weight:bold" align="center"><b>Description</b></td>
+					<td style="font-size:9; font-weight:bold" align="center"><b>Rate</b></td>
+					<td style="font-size:9; font-weight:bold" align="center"><b>Charges &nbsp; ($!invoice.currencyNetChargeTot.uom)</b></td>
+				</tr>												
+				
+				#if($vw3g_InvoiceCharge_Template1List)
+					#foreach($invoiceCharge in $vw3g_InvoiceCharge_Template1List)
+						<tr>
+							<td style="font-size:10" align="center" >$!invoiceCharge.dataValue_CostType</td>							 
+							<td style="font-size:10" align="center" >$!invoiceCharge.accCodeDesc</td>							
+							<td style="font-size:10" align="center" >$!invoiceCharge.dataValue_RateType</td>
+							<td style="font-size:10" align="center" >$number.currency($!invoiceCharge.currencyAmt_NetCharge)</td>
+						</tr>
+						 
+					#end
+				#end
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<table cellspacing=".25" cellpadding="0" border ="0.75" style="font-family: arial">
+				<tr>
+					<td  colspan="3"></td>
+					<td  align="center" style="font-size:9; font-weight:bold">Total Charges &nbsp; ($!invoice.currencyNetChargeTot.uom) <br>
+						$number.currency($!invoice.currencyNetChargeTot.amount) 
+					</td>
+				</tr>
+			</table>
+		<td>
+	</tr>
+</table>
+<br>
+<table cellspacing="0" cellpadding="0" border ="0" style="font-family: arial">
+	<tr>
+		<td>
+			<table cellspacing="0" cellpadding="0" border ="0" align="top">
+				<tr>
+					<td colspan="3" rowspan="9">
+						<table cellspacing="0" cellpadding="0" border =".75" align="top">
+							<tr>
+								<td style="font-size:8" align="center"><b>TYPE</b></td>
+								<td style="font-size:8" align="center"><b>REFERENCE NUMBER</b></td>
+							</tr> 
+							#set ($cnt = 0)
+							#foreach($ref in $consolidatedRefNumViews)
+								#foreach($ord in $invoiceOrdHeaderList)
+									#foreach($q in $qualifierMap)
+										#if($ref.qualifierId == $q.qualifierId && $ord.ordHeaderId == $ref.entityIdOwnedBy && $q.qualifierName != "" && $cnt < 8 && ($q.qualifierName.length() < 4 || $q.qualifierName == "PRO Number" || $q.qualifierName == "PurchaseOrderNum" || $q.qualifierName == "PU Num" ||$q.qualifierName ==  "Book Num" || $q.qualifierName == "Cont Num"))
+										#set($cnt = $cnt + 1)
+										<tr>
+											<td style="font-size:9" align="center" >$!q.qualifierName</td>							 
+											<td style="font-size:9" align="center" >$!ref.refNumValue</td>							
+										</tr>	
+										#end
+									#end
+								#end
+							#end
+							
+						</table>
+					</td>
+					<td colspan="1" rowspan="9"></td>
+				</tr>
+				<!-- <tr>
+					<td colspan="4" rowspan="5"><br></td>
+				</tr>
+				 -->
+							
+			</table>	
+		</td>
+		<td>
+			<table cellspacing="0" cellpadding="0" border ="0" align="right">
+				
+				<tr>
+					<td colspan="2">
+						<table cellspacing="0" cellpadding="0" border ="0">
+							<tr>
+								<td style="font-size:9" align="left"><b>Mail Payments To : </b><br>
+								<h5>YRC Freight<br>
+									PO BOX 775556<br>
+									CHICAGO, IL 60677-5556</h5></td>
+							</tr>
+						</table>
+					</td>
+					<td colspan="2"></td>
+				</tr>
+				<tr><td colspan="4"><br></td></tr>
+				<tr>
+					<td colspan="4">
+						<table cellspacing="0" cellpadding="0" border =".75" align="center">
+							<tr>
+								<td colspan="4" style="font-size:10; font-weight:bold; border:solid 2px #060" align="center">
+									$!invoiceType <br/>
+									Invoice Number: &nbsp;&nbsp;  $!invoice.invoiceNum <br/>
+									Amount Due: $number.currency($!invoice.currencyNetChargeTot.amount) <br/>
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="4">
+						<table cellspacing="0" cellpadding="0" border ="0">
+							<tr>
+								<td style="font-size:6" align="left">Write your invoice number on your check or money order and make it payable to: YRC Freight. 
+						Late payment penalty and/or collection fees may apply on payments recieved after due date. 
+						</td>
+							</tr>
+						</table> 
+					</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+</table>
+<table>
+	<tr>
+		<td style="font-size:10; font-weight:bold" align="center">Thank you for using YRC Freight!
+		</td>
+	</tr> 	
+</table>	
+<!-- <table cellspacing="0" cellpadding="0" border ="0" style="font-family: arial">
+	<tr>
+		<td>
+			<table cellspacing="0" cellpadding="0" border ="0" align="left" >
+				<tr>
+					<td colspan="10">
+						<table cellspacing="0" cellpadding="0" border =".75">
+							<tr>
+								<td  colspan="2" style="font-size:8">PRO</font></td>
+								<td  colspan="8" align="right">$!invoice.invoiceNum</td>
+							</tr>
+							<tr>
+								<td colspan="10">
+									<table cellspacing="0" cellpadding="0" border ="0"> <tr><td style="font-size:3">&nbsp;</td></tr>
+										<tr>
+											<td style="font-size:8" align="center"><b><font color="gray">#if($!invoice.invoiceNum) #barCode("HTMLImgFile", "Code128", 100, 30, $!invoice.invoiceNum) #end</font></b></td>
+										</tr> <tr><td style="font-size:3">&nbsp;</td></tr>
+									</table>
+								</td>
+							</tr>
+							<tr>
+								<td colspan="10">
+								<table cellspacing="0" cellpadding="0" border ="0">
+									<tr>
+										<td colspan="5" style="font-size:6" align="center">PICKUP DATE</td>
+										<td colspan="5" style="font-size:6" align="center">DELIVERY DATE</td>
+									</tr>
+									<tr>
+										<td colspan="5" style="font-size:6"align="center">$!date.format('MM-dd-yyyy HH:MM',$!date.toDate("yyyy-MM-dd'T'HH:mm:ss.SSS", $!myDateShipped))  </td>
+										<td colspan="5" style="font-size:6"align="center">$!date.format('MM-dd-yyyy HH:MM',$!date.toDate("yyyy-MM-dd'T'HH:mm:ss.SSS", $!myDateDelivered))  </td>
+									</tr>
+								</table>
+								</td>
+							</tr>
+						</table>
+					</td>
+					<td colspan="6" > &nbsp;</td>
+				</tr>
+				<tr>
+					<td colspan="16" > <br> </td>
+				</tr>
+				<tr>
+					<td colspan="1"> &nbsp;</td>
+					<td colspan="14">
+						<table cellspacing="0" cellpadding="0" border =".75">
+							<tr>
+								<td colspan="1" style="font-size:10" align="center"><b> I <br> N <br> V <br> O <br> I <br> C <br> E</b></td>
+								<td colspan="13" style="font-size:10" align="left"> &nbsp; $!locBillTo.addrName <br /> &nbsp; $!locBillTo.addr1 <br /> &nbsp; $!locBillTo.cityName &nbsp; $!locBillTo.state.stateName &nbsp;$!locBillTo.postalCode <br /></td>
+							</tr>
+						</table>
+					</td>
+					<td colspan="1" > &nbsp;</td>
+				</tr>
+			</table>
+		</td>
+		<td>
+			<table cellspacing="0" cellpadding="0" border =".75" align="right">
+				<tr>
+					<td >
+						<table cellspacing="0" cellpadding="0" border ="0">
+							<tr>
+								<td style="font-size:10" align="left"> THIS IS YOUR INVOICE. TO INSURE PROPER CREDIT,<br>PLEASE RETURN A COPY OF THIS INVOICE WITH<br>YOUR PAYMENT, OR A LIST OF ALL PROS PAID. </td>
+							</tr>
+							<tr>
+								<td> <br> </td>
+							</tr>
+							<tr>
+								<td>
+									<table cellspacing="0" cellpadding="0" >
+										<tr>
+											<td style="font-size:10" align="left"> &nbsp; &nbsp; REMIT TO:</td>
+											<td style="font-size:10" align="left">COMPANY <br /> P. O. Box 3065 <br /> CITY, STATE ZIP <br />555-555-5555 <br></td>
+										</tr>
+									</table>
+								</td>
+							</tr>
+							<tr>
+								<td > <br> </td>
+							</tr>
+							<tr>
+								<td>
+									<table cellspacing="0" cellpadding="0" >
+										<tr>
+											<td style="font-size:10">TOTAL DUE:</td>
+											<td style="font-size:10">$number.currency($!invoice.currencyNetChargeTot.amount)</td>
+											<td style="font-size:10"> DUE BY:</td>
+											<td style="font-size:10">$!rtDueDate</td>
+										</tr>
+									</table>
+								</td>
+							</tr>
+							<tr>
+								<td > <br> </td>
+							</tr>
+							<tr>
+								<td>
+									<table cellspacing="0" cellpadding="0" >
+										<tr>
+											<td style="font-size:10" align="center"><b>DELIVERED TO</b></td>
+											<td align="center"><b>DATE</b></td>
+										</tr>
+										<tr>
+											<td style="font-size:10" align="center">$!tOrder.locDest.addrName</td>
+											<td style="font-size:10" align="center">$!date.format('MM-dd-yyyy HH:mm',$!date.toDate("yyyy-MM-dd'T'HH:mm:ss.SSS", $!myDateDelivered))</td>
+										</tr>
+									</table>
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+</table>
+<br>
+<table cellspacing="0" cellpadding="0" border =".75" style="font-family: arial">
+	<tr>
+		<td style="font-size:8" align="center" ><b>QUOTE NUMBER</b></td>
+		<td style="font-size:8" align="center" ><b>INVOICE DATE</b></td>
+		<td style="font-size:8" align="center" ><b>TOTAL WEIGHT</b></td>
+		<td style="font-size:8" align="center" ><b>TOTAL HANDLING UNITS</b></td>
+		<td style="font-size:8" align="center" ><b>PURCHASE ORDER #</b></td>
+		<td style="font-size:8" align="center" ><b>BILL OF LADING #</b></td>
+	</tr>
+	<tr>
+		<td style="font-size:8" align="center" >$!myLoadNum.replaceAll("[A-Za-z]","") &nbsp;</td>
+		<td style="font-size:8" align="center" >$!date.format('MM-dd-yyyy',$!date.toDate("yyyy-MM-dd", $!invoice.schedDateInvoice))</td>
+		<td style="font-size:8" align="center" >$number.format("#0.0",$!myWgtTotal) &nbsp;</td>
+		<td style="font-size:8" align="center" >$!myHUTotal &nbsp;</td>
+		<td style="font-size:8" align="center" >#foreach($refNum in $invoiceRefNumList)#if ($refNum.Qualifier.QualifierName == "Purchase Order Number")$!refNum.RefNumValue #end #end &nbsp;</td>
+		<td style="font-size:8" align="center" >$!myBOL</td>
+	</tr>
+</table>
+<table cellspacing="0" cellpadding="0" border =".75" style="font-family: arial">
+	<tr>
+		<td style="font-size:8" align="center" ><b>SHIPPER</b></td>
+		<td style="font-size:8" align="center" ><b>CONSIGNEE</b></td>
+		<td style="font-size:8" align="center" ><b>SPECIAL INSTRUCTIONS</b></td>
+	</tr>
+	<tr>
+		<td style="font-size:8" align="top" >$!tOrder.locOrig.addrName <br /> $!tOrder.locOrig.addr1 <br /> $!tOrder.locOrig.cityName &nbsp; $!tOrder.locOrig.state.stateName &nbsp; $!tOrder.locOrig.postalCode <br /></td>
+		<td style="font-size:8" align="top" >$!tOrder.locDest.addrName<br /> $!tOrder.locDest.addr1 <br />$!tOrder.locDest.cityName &nbsp; $!tOrder.locDest.state.stateName&nbsp; $!tOrder.locDest.postalCode <br /> </td>
+		<td style="font-size:8">#foreach($comment in $invoiceCommentList) $!comment.qualifierName $comment.CommentValue &nbsp; &nbsp; #end</td>
+	</tr>
+</table>
+<br>
+<table cellspacing="0" cellpadding="0" border ="0" style="font-family: arial">
+	<tr>
+		<td>
+			<table cellspacing=".75" cellpadding="0" border =".75" style="font-family: arial">
+				<tr>
+					<td style="font-size:8" align="center"><b>CHARGE TYPE</b></td>					 
+					<td style="font-size:8" align="center"><b>DESCRIPTION</b></td>
+					<td style="font-size:8" align="center"><b>RATE</b></td>
+					<td style="font-size:8" align="center"><b>CHARGES</b></td>
+				</tr>												
+				
+				#if($vw3g_InvoiceCharge_Template1List)
+					#foreach($invoiceCharge in $vw3g_InvoiceCharge_Template1List)
+						<tr>
+							<td style="font-size:8" align="center" >$!invoiceCharge.dataValue_CostType</td>							 
+							<td style="font-size:8" align="center" >$!invoiceCharge.accCodeDesc</td>							
+							<td style="font-size:8" align="center" >$!invoiceCharge.dataValue_RateType</td>
+							<td style="font-size:8" align="center" >$number.format("#0.00",$!invoiceCharge.currencyAmt_NetCharge)</td>
+						</tr>
+						 
+					#end
+				#end
+								
+				<tr >
+					<td colspan="2">
+						<table border= "0">
+							<tr>
+								<td style="font-size:8" colspan="2">INVOICES NOT PAID BY DUE DATE ARE SUBJECT TO PENALTIES AND/OR FULL TARIFF RATES</td>
+							</tr>
+							<tr>
+								<td colspan="1"><b>COMP #</b></td>								 
+								<td style="font-size:8" colspan="1" align="right"><b>ORIGINAL INVOICE</b></td>
+							</tr>
+							<tr>
+								<td style="font-size:8" colspan="1">$!invoice.invoiceNum</td>								 
+								<td style="font-size:8" colspan="1" align="right"><i>Payable in US Funds</i></td>
+							</tr>
+						</table>
+					</td>
+					<td colspan="2">
+						<table border= "0">
+							<tr>
+								<td colspan="1" style="font-size:8" align="center" >Declared Value</td>
+								<td colspan="1" align="center"> $</td>
+							</tr>
+							<tr>
+								<td > <br> </td>
+							</tr>
+							<tr>
+								<td colspan="1"  style="font-size:8" align="center" >Invoice Total</td>
+								<td colspan="1" style="font-size:8" align="center">$number.currency($!invoice.currencyNetChargeTot.amount)</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+</table> -->
+</body>
+</html>

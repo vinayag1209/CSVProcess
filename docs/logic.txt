@@ -1,0 +1,44 @@
+1. Create Java POJO to hold relevant data. 
+2. Class should contain fields for zipcode and zone
+
+Create List of POJO that has  data loaded from csv/excel.
+
+For each node in the list except last
+Take first node - mark it as current
+If!(min < max) and compare zones then
+current.zip = min = max
+
+
+check if next node has same value as current node for zone
+If it does - max = next.zip 
+	
+else
+create node
+check if min=max -> zip = min	
+	else zip = min:max
+	zone  = current.zone
+	
+	add node to result list
+	min = max = current.zip
+	
+End-for
+If node[last].zip == maxzip do nothing
+else 
+zip = node[last].zip
+zone = node[last].zone
+Create node
+Add to list
+
+
+Write list to csv	
+	
+	
+	
+Process the new list - choose minimum zip and maximum zip. Concatentate the two with ":". 
+Write this as a output NodeList.
+
+Else
+Write this node in output List 
+
+Do this until end of list LOg
+

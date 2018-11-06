@@ -1,0 +1,49 @@
+{
+    "motorCarrierNB": "571190",
+    "activeStatusIN": "Y",
+    "relationshipOwnerID": null,
+    "driverQT": null,
+    "carrierNM": "Dan Lewis Trucking LLC",
+    "webAddressTX": null,
+    "totalTractorQT": 1,
+    "carrierFleetTypeNM": "Owner Operator",
+    "carrierSafetyRatingTypeNM": "None",
+    "tlcarrierTrailer": [],
+    "tlcarrierAddress": [
+        {
+            "localDriverIN": "N",
+            "dropTrailerIN": "N",
+            "hazmatCertifiedIN": "N",
+            "addressTypeKEY": 2,
+            "carrierFacilityNM": null,
+            "squareFootageQT": null,
+            "addressTypeSequenceQT": null,
+            "addressTypeNM": "Home Office",
+            "streetAddressLine1TX": "9597 Creek Rd",
+            "streetAddressLine2TX": null,
+            "cityNM": "Raymondville",
+            "stateProvinceCD": "MO",
+            "countryCD": "US",
+            "countyNM": "Texas",
+            "postalCD": "65555",
+            "postalPlus4CD": "8112",
+            "tlcarrierAddressKEY": 64,
+            "tlcarrierContact": [],
+            "tlcarrierKEY": 64
+        }
+    ],
+    "scaccd": null,
+    "usdotnb": 1533318,
+    "tlcarrierSafetyRatingTypeKEY": 4,
+    "tlcarrierCertification": [],
+    "tlcarrierKEY": 64,
+    "tlcarrierLane": [],
+    "tlcarrierDutyClassification": [
+        {
+            "tlcarrierDutyClassificationKEY": 80,
+            "tlgvwrdutyClassificationTypeKEY": 3,
+            "gvwrdutyClassificationTypeNM": "Heavy",
+            "tlcarrierKEY": 64
+        }
+    ]
+}

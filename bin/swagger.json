@@ -1,0 +1,4271 @@
+{
+	"swagger": "2.0",
+	"info": {
+		"version": "1.0.0",
+		"title": "TLCarrier",
+		"description": "ODI Enterprise Service providing TL Carrier related data"
+	},
+	"basePath": "/api/v1/ops",
+	"paths": {
+		"/v1/ops/tlcarriercerttypes": {
+			"get": {
+				"tags": ["core"],
+				"summary": "getTLCarriersCertificationTypes",
+				"description": "Returns all TL Carrier Certification Type rows",
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"type": "array",
+							"description": "",
+							"items": {
+								"type": "object",
+								"description": "",
+								"properties": {
+									"certificationTypeNM": {
+										"type": "string",
+										"description": ""
+									},
+									"tlcarrierCertificationTypeKEY": {
+										"type": "integer",
+										"format": "int32",
+										"description": ""
+									},
+									"certificationDS": {
+										"type": "string",
+										"description": ""
+									}
+								}
+							}
+						}
+					},
+					"404": {
+						"description": "404 Not Found",
+						"schema": {
+							"type": "object"
+						}
+					},
+					"417": {
+						"description": "417 Expectation Failed",
+						"schema": {
+							"type": "object"
+						}
+					},
+					"503": {
+						"description": "503 Service Unavailable",
+						"schema": {
+							"type": "object"
+						}
+					}
+				}
+			}
+		},
+		"/v1/ops/tlcarriers/carriernames/{carrierNM}": {
+			"get": {
+				"tags": ["core"],
+				"summary": "getTLCarriersByCarrierName",
+				"description": "Returns top 100 TLCarrier & TLCarrierAddress 'partial' entities based on params, to narrow down or improve results carrierNM needs to be more refined",
+				"parameters": [{
+						"name": "carrierNM",
+						"in": "path",
+						"description": "Query based on carrierNM, allows partial name using query with 'like', must be at least 2 bytes",
+						"required": true,
+						"type": "string"
+					}, {
+						"name": "stateCD",
+						"in": "query",
+						"description": "Query based on stateCD",
+						"required": true,
+						"type": "string"
+					}, {
+						"name": "addrType",
+						"in": "query",
+						"description": "Query based on address type name from GEN.Address_Type",
+						"required": false,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"type": "array",
+							"description": "",
+							"items": {
+								"type": "object",
+								"description": "",
+								"properties": {
+									"activeStatusIN": {
+										"type": "string",
+										"description": ""
+									},
+									"carrierFleetTypeNM": {
+										"type": "string",
+										"description": ""
+									},
+									"carrierNM": {
+										"type": "string",
+										"description": ""
+									},
+									"carrierSafetyRatingTypeNM": {
+										"type": "string",
+										"description": ""
+									},
+									"driverQT": {
+										"type": "integer",
+										"format": "int32",
+										"description": ""
+									},
+									"emailAddressTX": {
+										"type": "string",
+										"description": ""
+									},
+									"motorCarrierNB": {
+										"type": "string",
+										"description": ""
+									},
+									"relationshipOwnerID": {
+										"type": "string",
+										"description": ""
+									},
+									"scaccd": {
+										"type": "string",
+										"description": ""
+									},
+									"tlcarrierAddress": {
+										"type": "array",
+										"description": "",
+										"items": {
+											"type": "object",
+											"description": "",
+											"properties": {
+												"addressTypeKEY": {
+													"type": "integer",
+													"format": "int32",
+													"description": ""
+												},
+												"addressTypeNM": {
+													"type": "string",
+													"description": ""
+												},
+												"addressTypeSequenceQT": {
+													"type": "integer",
+													"format": "int32",
+													"description": ""
+												},
+												"carrierFacilityNM": {
+													"type": "string",
+													"description": ""
+												},
+												"cityNM": {
+													"type": "string",
+													"description": ""
+												},
+												"countryCD": {
+													"type": "string",
+													"description": ""
+												},
+												"countyNM": {
+													"type": "string",
+													"description": ""
+												},
+												"dropTrailerIN": {
+													"type": "string",
+													"description": ""
+												},
+												"hazmatCertifiedIN": {
+													"type": "string",
+													"description": ""
+												},
+												"localDriverIN": {
+													"type": "string",
+													"description": ""
+												},
+												"postalCD": {
+													"type": "string",
+													"description": ""
+												},
+												"postalPlus4CD": {
+													"type": "string",
+													"description": ""
+												},
+												"squareFootageQT": {
+													"type": "integer",
+													"format": "int32",
+													"description": ""
+												},
+												"stateProvinceCD": {
+													"type": "string",
+													"description": ""
+												},
+												"streetAddressLine1TX": {
+													"type": "string",
+													"description": ""
+												},
+												"streetAddressLine2TX": {
+													"type": "string",
+													"description": ""
+												},
+												"tlcarrierAddressKEY": {
+													"type": "integer",
+													"format": "int32",
+													"description": ""
+												},
+												"tlcarrierKEY": {
+													"type": "integer",
+													"format": "int32",
+													"description": ""
+												}
+											}
+										}
+									},
+									"tlcarrierKEY": {
+										"type": "integer",
+										"format": "int32",
+										"description": ""
+									},
+									"tlcarrierSafetyRatingTypeKEY": {
+										"type": "integer",
+										"format": "int32",
+										"description": ""
+									},
+									"totalTrailerQT": {
+										"type": "integer",
+										"format": "int32",
+										"description": ""
+									},
+									"usdotnb": {
+										"type": "number",
+										"description": ""
+									}
+								}
+							}
+						}
+					},
+					"400": {
+						"description": "400 Bad Request - returned if carrierNM isn't over 1 byte",
+						"schema": {
+							"type": "object"
+						}
+					},
+					"404": {
+						"description": "404 Not Found",
+						"schema": {
+							"type": "object"
+						}
+					},
+					"417": {
+						"description": "417 Expectation Failed",
+						"schema": {
+							"type": "object"
+						}
+					},
+					"503": {
+						"description": "503 Service Unavailable",
+						"schema": {
+							"type": "object"
+						}
+					}
+				}
+			}
+		},
+		"/v1/ops/tlcarriers/motorcarriernbs/{motorCarrierNB}": {
+			"get": {
+				"tags": ["core"],
+				"summary": "getTLCarriersByMotorCarrierNB",
+				"description": "Return all or partial TLCarrier entities based on params",
+				"parameters": [{
+						"name": "motorCarrierNB",
+						"in": "path",
+						"description": "motorCarrierNB",
+						"required": true,
+						"type": "string"
+					}, {
+						"name": "addrType",
+						"in": "query",
+						"description": "Query based on address type name from GEN.Address_Type",
+						"required": true,
+						"type": "string"
+					}, {
+						"name": "full",
+						"in": "query",
+						"description": "Set to true to return ALL child entities, false to return TL_Carrier & TL_Carrier_Address",
+						"required": true,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"type": "array",
+							"description": "",
+							"items": {
+								"type": "object",
+								"description": "",
+								"properties": {
+									"activeStatusIN": {
+										"type": "string",
+										"description": ""
+									},
+									"carrierFleetTypeNM": {
+										"type": "string",
+										"description": ""
+									},
+									"carrierNM": {
+										"type": "string",
+										"description": ""
+									},
+									"carrierSafetyRatingTypeNM": {
+										"type": "string",
+										"description": ""
+									},
+									"driverQT": {
+										"type": "integer",
+										"format": "int32",
+										"description": ""
+									},
+									"emailAddressTX": {
+										"type": "string",
+										"description": ""
+									},
+									"motorCarrierNB": {
+										"type": "string",
+										"description": ""
+									},
+									"relationshipOwnerID": {
+										"type": "string",
+										"description": ""
+									},
+									"scaccd": {
+										"type": "string",
+										"description": ""
+									},
+									"tlcarrierAddress": {
+										"type": "array",
+										"description": "",
+										"items": {
+											"type": "object",
+											"description": "",
+											"properties": {
+												"addressTypeKEY": {
+													"type": "integer",
+													"format": "int32",
+													"description": ""
+												},
+												"addressTypeNM": {
+													"type": "string",
+													"description": ""
+												},
+												"addressTypeSequenceQT": {
+													"type": "integer",
+													"format": "int32",
+													"description": ""
+												},
+												"carrierFacilityNM": {
+													"type": "string",
+													"description": ""
+												},
+												"cityNM": {
+													"type": "string",
+													"description": ""
+												},
+												"countryCD": {
+													"type": "string",
+													"description": ""
+												},
+												"countyNM": {
+													"type": "string",
+													"description": ""
+												},
+												"dropTrailerIN": {
+													"type": "string",
+													"description": ""
+												},
+												"hazmatCertifiedIN": {
+													"type": "string",
+													"description": ""
+												},
+												"localDriverIN": {
+													"type": "string",
+													"description": ""
+												},
+												"postalCD": {
+													"type": "string",
+													"description": ""
+												},
+												"postalPlus4CD": {
+													"type": "string",
+													"description": ""
+												},
+												"squareFootageQT": {
+													"type": "integer",
+													"format": "int32",
+													"description": ""
+												},
+												"stateProvinceCD": {
+													"type": "string",
+													"description": ""
+												},
+												"streetAddressLine1TX": {
+													"type": "string",
+													"description": ""
+												},
+												"streetAddressLine2TX": {
+													"type": "string",
+													"description": ""
+												},
+												"tlcarrierAddressKEY": {
+													"type": "integer",
+													"format": "int32",
+													"description": ""
+												},
+												"tlcarrierContact": {
+													"type": "array",
+													"description": "",
+													"items": {
+														"type": "object",
+														"description": "",
+														"properties": {
+															"contactFirstNM": {
+																"type": "string",
+																"description": ""
+															},
+															"contactLastNM": {
+																"type": "string",
+																"description": ""
+															},
+															"contactRoleNM": {
+																"type": "string",
+																"description": ""
+															},
+															"contactSequenceOrderNB": {
+																"type": "integer",
+																"format": "int32",
+																"description": ""
+															},
+															"contactTypeNM": {
+																"type": "string",
+																"description": ""
+															},
+															"emailAddressTX": {
+																"type": "string",
+																"description": ""
+															},
+															"mobilePhoneNB": {
+																"type": "string",
+																"description": ""
+															},
+															"phoneNB": {
+																"type": "string",
+																"description": ""
+															},
+															"tlcarrierAddressKEY": {
+																"type": "integer",
+																"format": "int32",
+																"description": ""
+															},
+															"tlcarrierContactKEY": {
+																"type": "integer",
+																"format": "int32",
+																"description": ""
+															},
+															"tLContactRoleKEY": {
+																"type": "integer",
+																"format": "int32",
+																"description": ""
+															},
+															"tlContactTypeKEY": {
+																"type": "integer",
+																"format": "int32",
+																"description": ""
+															}
+														}
+													}
+												},
+												"tlcarrierKEY": {
+													"type": "integer",
+													"format": "int32",
+													"description": ""
+												}
+											}
+										}
+									},
+									"tlcarrierCertification": {
+										"type": "array",
+										"description": "",
+										"items": {
+											"type": "object",
+											"description": "",
+											"properties": {
+												"certificationTypeNM": {
+													"type": "string",
+													"description": ""
+												},
+												"tlcarrierCertificationKEY": {
+													"type": "integer",
+													"format": "int32",
+													"description": ""
+												},
+												"tlcarrierCertificationTypeKEY": {
+													"type": "integer",
+													"format": "int32",
+													"description": ""
+												},
+												"tlcarrierKEY": {
+													"type": "integer",
+													"format": "int32",
+													"description": ""
+												}
+											}
+										}
+									},
+									"tlcarrierDutyClassification": {
+										"type": "array",
+										"description": "",
+										"items": {
+											"type": "object",
+											"description": "",
+											"properties": {
+												"gvwrdutyClassificationTypeNM": {
+													"type": "string",
+													"description": ""
+												},
+												"tlcarrierDutyClassificationKEY": {
+													"type": "integer",
+													"format": "int32",
+													"description": ""
+												},
+												"tlcarrierKEY": {
+													"type": "integer",
+													"format": "int32",
+													"description": ""
+												},
+												"tlgvwrdutyClassificationTypeKEY": {
+													"type": "integer",
+													"format": "int32",
+													"description": ""
+												}
+											}
+										}
+									},
+									"tlcarrierKEY": {
+										"type": "integer",
+										"format": "int32",
+										"description": ""
+									},
+									"tlcarrierLane": {
+										"type": "array",
+										"description": "",
+										"items": {
+											"type": "object",
+											"description": "",
+											"properties": {
+												"permanentLaneIN": {
+													"type": "string",
+													"description": ""
+												},
+												"tlcarrierKEY": {
+													"type": "integer",
+													"format": "int32",
+													"description": ""
+												},
+												"tlcarrierLaneKEY": {
+													"type": "integer",
+													"format": "int32",
+													"description": ""
+												},
+												"tlcarrierLaneTrailer": {
+													"type": "array",
+													"description": "",
+													"items": {
+														"type": "object",
+														"description": "",
+														"properties": {
+															"estimatedCostAMT": {
+																"type": "number",
+																"description": ""
+															},
+															"lastDataCollectionDT": {
+																"type": "string",
+																"format": "date-time",
+																"description": ""
+															},
+															"tlcarrierLaneKEY": {
+																"type": "integer",
+																"format": "int32",
+																"description": ""
+															},
+															"tlcarrierLaneTrailerDOW": {
+																"type": "array",
+																"description": "",
+																"items": {
+																	"type": "object",
+																	"description": "",
+																	"properties": {
+																		"dayOfWeekNB": {
+																			"type": "integer",
+																			"format": "int32",
+																			"description": ""
+																		},
+																		"dayOfWeekNM": {
+																			"type": "string",
+																			"description": ""
+																		},
+																		"dowrunQT": {
+																			"type": "integer",
+																			"format": "int32",
+																			"description": ""
+																		},
+																		"tlcarrierLaneTrailerDOWKEY": {
+																			"type": "integer",
+																			"format": "int32",
+																			"description": ""
+																		},
+																		"tlcarrierLaneTrailerKEY": {
+																			"type": "integer",
+																			"format": "int32",
+																			"description": ""
+																		},
+																		"dayOfWeekAbbr2CD": {
+																			"type": "string",
+																			"description": ""
+																		}
+																	}
+																}
+															},
+															"tlcarrierLaneTrailerKEY": {
+																"type": "integer",
+																"format": "int32",
+																"description": ""
+															},
+															"tltrailerClassKEY": {
+																"type": "integer",
+																"format": "int32",
+																"description": ""
+															},
+															"tltrailerSubTypeKEY": {
+																"type": "integer",
+																"format": "int32",
+																"description": ""
+															},
+															"tltrailerSubTypeNM": {
+																"type": "string",
+																"description": ""
+															},
+															"tltrailerTypeKEY": {
+																"type": "integer",
+																"format": "int32",
+																"description": ""
+															},
+															"tltrailerTypeNM": {
+																"type": "string",
+																"description": ""
+															},
+															"trailerAvailableQT": {
+																"type": "integer",
+																"format": "int32",
+																"description": ""
+															},
+															"trailerLengthinFeetQT": {
+																"type": "integer",
+																"format": "int32",
+																"description": ""
+															}
+														}
+													}
+												},
+												"tllaneKEY": {
+													"type": "integer",
+													"format": "int32",
+													"description": ""
+												},
+												"tlLane": {
+													"type": "object",
+													"description": "",
+													"items": {
+														"type": "object",
+														"description": "",
+														"properties": {
+															"tLLaneKEY": {
+																"type": "integer",
+																"description": ""
+															},
+															"postalAreaOriginKEY": {
+																"type": "integer",
+																"format": "int32",
+																"description": ""
+															},
+															"postalAreaDestinationKEY": {
+																"type": "integer",
+																"format": "int32",
+																"description": ""
+															},
+															"postalAreaOrigin": {
+																"type": "object",
+																"description": "",
+																"items": {
+																	"type": "object",
+																	"description": "",
+																	"properties": {
+																		"postalAreaKEY": {
+																			"type": "integer",
+																			"description": ""
+																		},
+																		"postalCD": {
+																			"type": "string",
+																			"description": ""
+																		},
+																		"cityNM": {
+																			"type": "string",
+																			"description": ""
+																		},
+																		"stateCD": {
+																			"type": "string",
+																			"description": ""
+																		},
+																		"countryCD": {
+																			"type": "string",
+																			"description": ""
+																		},
+																		"latitude": {
+																			"type": "integer",
+																			"description": ""
+																		},
+																		"longitute": {
+																			"type": "integer",
+																			"description": ""
+																		}
+																	}
+																}
+															},
+															"postalAreaDestination": {
+																"type": "object",
+																"description": "",
+																"items": {
+																	"type": "object",
+																	"description": "",
+																	"properties": {
+																		"postalAreaKEY": {
+																			"type": "integer",
+																			"description": ""
+																		},
+																		"postalCD": {
+																			"type": "string",
+																			"description": ""
+																		},
+																		"cityNM": {
+																			"type": "string",
+																			"description": ""
+																		},
+																		"stateCD": {
+																			"type": "string",
+																			"description": ""
+																		},
+																		"countryCD": {
+																			"type": "string",
+																			"description": ""
+																		},
+																		"latitude": {
+																			"type": "integer",
+																			"description": ""
+																		},
+																		"longitute": {
+																			"type": "integer",
+																			"description": ""
+																		}
+																	}
+																}
+															}
+														}
+													}
+												}
+											}
+										}
+									},
+									"tlcarrierSafetyRatingTypeKEY": {
+										"type": "integer",
+										"format": "int32",
+										"description": ""
+									},
+									"tlcarrierTrailer": {
+										"type": "array",
+										"description": "",
+										"items": {
+											"type": "object",
+											"description": "",
+											"properties": {
+												"tlcarrierKEY": {
+													"type": "integer",
+													"format": "int32",
+													"description": ""
+												},
+												"tlcarrierTrailerKEY": {
+													"type": "integer",
+													"format": "int32",
+													"description": ""
+												},
+												"tltrailerClassKEY": {
+													"type": "integer",
+													"format": "int32",
+													"description": ""
+												},
+												"tltrailerSubTypeKEY": {
+													"type": "integer",
+													"format": "int32",
+													"description": ""
+												},
+												"tltrailerSubTypeNM": {
+													"type": "string",
+													"description": ""
+												},
+												"tltrailerTypeKEY": {
+													"type": "integer",
+													"format": "int32",
+													"description": ""
+												},
+												"tltrailerTypeNM": {
+													"type": "string",
+													"description": ""
+												},
+												"trailerLengthinFeetQT": {
+													"type": "integer",
+													"format": "int32",
+													"description": ""
+												},
+												"trailerQT": {
+													"type": "integer",
+													"format": "int32",
+													"description": ""
+												}
+											}
+										}
+									},
+									"totalTrailerQT": {
+										"type": "integer",
+										"format": "int32",
+										"description": ""
+									},
+									"usdotnb": {
+										"type": "number",
+										"description": ""
+									}
+								}
+							}
+						}
+					},
+					"404": {
+						"description": "404 Not Found",
+						"schema": {
+							"type": "object"
+						}
+					},
+					"417": {
+						"description": "417 Expectation Failed",
+						"schema": {
+							"type": "object"
+						}
+					},
+					"503": {
+						"description": "503 Service Unavailable",
+						"schema": {
+							"type": "object"
+						}
+					}
+				}
+			}
+		},
+		"/v1/ops/tlcarriers/scacs/{scac}": {
+			"get": {
+				"tags": ["core"],
+				"summary": "getTLCarriersBySCAC",
+				"description": "Return all or partial TLCarrier entities based on params",
+				"parameters": [{
+						"name": "scac",
+						"in": "path",
+						"description": "scac",
+						"required": true,
+						"type": "string"
+					}, {
+						"name": "addrType",
+						"in": "query",
+						"description": "Query based on address type name from GEN.Address_Type",
+						"required": true,
+						"type": "string"
+					}, {
+						"name": "full",
+						"in": "query",
+						"description": "Set to true to return ALL child entities, false to return TL_Carrier & TL_Carrier_Address",
+						"required": true,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"type": "array",
+							"description": "",
+							"items": {
+								"type": "object",
+								"description": "",
+								"properties": {
+									"activeStatusIN": {
+										"type": "string",
+										"description": ""
+									},
+									"carrierFleetTypeNM": {
+										"type": "string",
+										"description": ""
+									},
+									"carrierNM": {
+										"type": "string",
+										"description": ""
+									},
+									"carrierSafetyRatingTypeNM": {
+										"type": "string",
+										"description": ""
+									},
+									"driverQT": {
+										"type": "integer",
+										"format": "int32",
+										"description": ""
+									},
+									"emailAddressTX": {
+										"type": "string",
+										"description": ""
+									},
+									"motorCarrierNB": {
+										"type": "string",
+										"description": ""
+									},
+									"relationshipOwnerID": {
+										"type": "string",
+										"description": ""
+									},
+									"scaccd": {
+										"type": "string",
+										"description": ""
+									},
+									"tlcarrierAddress": {
+										"type": "array",
+										"description": "",
+										"items": {
+											"type": "object",
+											"description": "",
+											"properties": {
+												"addressTypeKEY": {
+													"type": "integer",
+													"format": "int32",
+													"description": ""
+												},
+												"addressTypeNM": {
+													"type": "string",
+													"description": ""
+												},
+												"addressTypeSequenceQT": {
+													"type": "integer",
+													"format": "int32",
+													"description": ""
+												},
+												"carrierFacilityNM": {
+													"type": "string",
+													"description": ""
+												},
+												"cityNM": {
+													"type": "string",
+													"description": ""
+												},
+												"countryCD": {
+													"type": "string",
+													"description": ""
+												},
+												"countyNM": {
+													"type": "string",
+													"description": ""
+												},
+												"dropTrailerIN": {
+													"type": "string",
+													"description": ""
+												},
+												"hazmatCertifiedIN": {
+													"type": "string",
+													"description": ""
+												},
+												"localDriverIN": {
+													"type": "string",
+													"description": ""
+												},
+												"postalCD": {
+													"type": "string",
+													"description": ""
+												},
+												"postalPlus4CD": {
+													"type": "string",
+													"description": ""
+												},
+												"squareFootageQT": {
+													"type": "integer",
+													"format": "int32",
+													"description": ""
+												},
+												"stateProvinceCD": {
+													"type": "string",
+													"description": ""
+												},
+												"streetAddressLine1TX": {
+													"type": "string",
+													"description": ""
+												},
+												"streetAddressLine2TX": {
+													"type": "string",
+													"description": ""
+												},
+												"tlcarrierAddressKEY": {
+													"type": "integer",
+													"format": "int32",
+													"description": ""
+												},
+												"tlcarrierContact": {
+													"type": "array",
+													"description": "",
+													"items": {
+														"type": "object",
+														"description": "",
+														"properties": {
+															"contactFirstNM": {
+																"type": "string",
+																"description": ""
+															},
+															"contactLastNM": {
+																"type": "string",
+																"description": ""
+															},
+															"contactRoleNM": {
+																"type": "string",
+																"description": ""
+															},
+															"contactSequenceOrderNB": {
+																"type": "integer",
+																"format": "int32",
+																"description": ""
+															},
+															"contactTypeNM": {
+																"type": "string",
+																"description": ""
+															},
+															"emailAddressTX": {
+																"type": "string",
+																"description": ""
+															},
+															"mobilePhoneNB": {
+																"type": "string",
+																"description": ""
+															},
+															"phoneNB": {
+																"type": "string",
+																"description": ""
+															},
+															"tlcarrierAddressKEY": {
+																"type": "integer",
+																"format": "int32",
+																"description": ""
+															},
+															"tlcarrierContactKEY": {
+																"type": "integer",
+																"format": "int32",
+																"description": ""
+															},
+															"tLContactRoleKEY": {
+																"type": "integer",
+																"format": "int32",
+																"description": ""
+															},
+															"tlContactTypeKEY": {
+																"type": "integer",
+																"format": "int32",
+																"description": ""
+															}
+														}
+													}
+												},
+												"tlcarrierKEY": {
+													"type": "integer",
+													"format": "int32",
+													"description": ""
+												}
+											}
+										}
+									},
+									"tlcarrierCertification": {
+										"type": "array",
+										"description": "",
+										"items": {
+											"type": "object",
+											"description": "",
+											"properties": {
+												"certificationTypeNM": {
+													"type": "string",
+													"description": ""
+												},
+												"tlcarrierCertificationKEY": {
+													"type": "integer",
+													"format": "int32",
+													"description": ""
+												},
+												"tlcarrierCertificationTypeKEY": {
+													"type": "integer",
+													"format": "int32",
+													"description": ""
+												},
+												"tlcarrierKEY": {
+													"type": "integer",
+													"format": "int32",
+													"description": ""
+												}
+											}
+										}
+									},
+									"tlcarrierDutyClassification": {
+										"type": "array",
+										"description": "",
+										"items": {
+											"type": "object",
+											"description": "",
+											"properties": {
+												"gvwrdutyClassificationTypeNM": {
+													"type": "string",
+													"description": ""
+												},
+												"tlcarrierDutyClassificationKEY": {
+													"type": "integer",
+													"format": "int32",
+													"description": ""
+												},
+												"tlcarrierKEY": {
+													"type": "integer",
+													"format": "int32",
+													"description": ""
+												},
+												"tlgvwrdutyClassificationTypeKEY": {
+													"type": "integer",
+													"format": "int32",
+													"description": ""
+												}
+											}
+										}
+									},
+									"tlcarrierKEY": {
+										"type": "integer",
+										"format": "int32",
+										"description": ""
+									},
+									"tlcarrierLane": {
+										"type": "array",
+										"description": "",
+										"items": {
+											"type": "object",
+											"description": "",
+											"properties": {
+												"permanentLaneIN": {
+													"type": "string",
+													"description": ""
+												},
+												"tlcarrierKEY": {
+													"type": "integer",
+													"format": "int32",
+													"description": ""
+												},
+												"tlcarrierLaneKEY": {
+													"type": "integer",
+													"format": "int32",
+													"description": ""
+												},
+												"tlcarrierLaneTrailer": {
+													"type": "array",
+													"description": "",
+													"items": {
+														"type": "object",
+														"description": "",
+														"properties": {
+															"estimatedCostAMT": {
+																"type": "number",
+																"description": ""
+															},
+															"lastDataCollectionDT": {
+																"type": "string",
+																"format": "date-time",
+																"description": ""
+															},
+															"tlcarrierLaneKEY": {
+																"type": "integer",
+																"format": "int32",
+																"description": ""
+															},
+															"tlcarrierLaneTrailerDOW": {
+																"type": "array",
+																"description": "",
+																"items": {
+																	"type": "object",
+																	"description": "",
+																	"properties": {
+																		"dayOfWeekNB": {
+																			"type": "integer",
+																			"format": "int32",
+																			"description": ""
+																		},
+																		"dayOfWeekNM": {
+																			"type": "string",
+																			"description": ""
+																		},
+																		"dowrunQT": {
+																			"type": "integer",
+																			"format": "int32",
+																			"description": ""
+																		},
+																		"tlcarrierLaneTrailerDOWKEY": {
+																			"type": "integer",
+																			"format": "int32",
+																			"description": ""
+																		},
+																		"tlcarrierLaneTrailerKEY": {
+																			"type": "integer",
+																			"format": "int32",
+																			"description": ""
+																		},
+																		"dayOfWeekAbbr2CD": {
+																			"type": "string",
+																			"description": ""
+																		}
+																	}
+																}
+															},
+															"tlcarrierLaneTrailerKEY": {
+																"type": "integer",
+																"format": "int32",
+																"description": ""
+															},
+															"tltrailerClassKEY": {
+																"type": "integer",
+																"format": "int32",
+																"description": ""
+															},
+															"tltrailerSubTypeKEY": {
+																"type": "integer",
+																"format": "int32",
+																"description": ""
+															},
+															"tltrailerSubTypeNM": {
+																"type": "string",
+																"description": ""
+															},
+															"tltrailerTypeKEY": {
+																"type": "integer",
+																"format": "int32",
+																"description": ""
+															},
+															"tltrailerTypeNM": {
+																"type": "string",
+																"description": ""
+															},
+															"trailerAvailableQT": {
+																"type": "integer",
+																"format": "int32",
+																"description": ""
+															},
+															"trailerLengthinFeetQT": {
+																"type": "integer",
+																"format": "int32",
+																"description": ""
+															}
+														}
+													}
+												},
+												"tllaneKEY": {
+													"type": "integer",
+													"format": "int32",
+													"description": ""
+												},
+												"tlLane": {
+													"type": "object",
+													"description": "",
+													"items": {
+														"type": "object",
+														"description": "",
+														"properties": {
+															"tLLaneKEY": {
+																"type": "integer",
+																"description": ""
+															},
+															"postalAreaOriginKEY": {
+																"type": "integer",
+																"format": "int32",
+																"description": ""
+															},
+															"postalAreaDestinationKEY": {
+																"type": "integer",
+																"format": "int32",
+																"description": ""
+															},
+															"postalAreaOrigin": {
+																"type": "object",
+																"description": "",
+																"items": {
+																	"type": "object",
+																	"description": "",
+																	"properties": {
+																		"postalAreaKEY": {
+																			"type": "integer",
+																			"description": ""
+																		},
+																		"postalCD": {
+																			"type": "string",
+																			"description": ""
+																		},
+																		"cityNM": {
+																			"type": "string",
+																			"description": ""
+																		},
+																		"stateCD": {
+																			"type": "string",
+																			"description": ""
+																		},
+																		"countryCD": {
+																			"type": "string",
+																			"description": ""
+																		},
+																		"latitude": {
+																			"type": "integer",
+																			"description": ""
+																		},
+																		"longitute": {
+																			"type": "integer",
+																			"description": ""
+																		}
+																	}
+																}
+															},
+															"postalAreaDestination": {
+																"type": "object",
+																"description": "",
+																"items": {
+																	"type": "object",
+																	"description": "",
+																	"properties": {
+																		"postalAreaKEY": {
+																			"type": "integer",
+																			"description": ""
+																		},
+																		"postalCD": {
+																			"type": "string",
+																			"description": ""
+																		},
+																		"cityNM": {
+																			"type": "string",
+																			"description": ""
+																		},
+																		"stateCD": {
+																			"type": "string",
+																			"description": ""
+																		},
+																		"countryCD": {
+																			"type": "string",
+																			"description": ""
+																		},
+																		"latitude": {
+																			"type": "integer",
+																			"description": ""
+																		},
+																		"longitute": {
+																			"type": "integer",
+																			"description": ""
+																		}
+																	}
+																}
+															}
+														}
+													}
+												}
+											}
+										}
+									},
+									"tlcarrierSafetyRatingTypeKEY": {
+										"type": "integer",
+										"format": "int32",
+										"description": ""
+									},
+									"tlcarrierTrailer": {
+										"type": "array",
+										"description": "",
+										"items": {
+											"type": "object",
+											"description": "",
+											"properties": {
+												"tlcarrierKEY": {
+													"type": "integer",
+													"format": "int32",
+													"description": ""
+												},
+												"tlcarrierTrailerKEY": {
+													"type": "integer",
+													"format": "int32",
+													"description": ""
+												},
+												"tltrailerClassKEY": {
+													"type": "integer",
+													"format": "int32",
+													"description": ""
+												},
+												"tltrailerSubTypeKEY": {
+													"type": "integer",
+													"format": "int32",
+													"description": ""
+												},
+												"tltrailerSubTypeNM": {
+													"type": "string",
+													"description": ""
+												},
+												"tltrailerTypeKEY": {
+													"type": "integer",
+													"format": "int32",
+													"description": ""
+												},
+												"tltrailerTypeNM": {
+													"type": "string",
+													"description": ""
+												},
+												"trailerLengthinFeetQT": {
+													"type": "integer",
+													"format": "int32",
+													"description": ""
+												},
+												"trailerQT": {
+													"type": "integer",
+													"format": "int32",
+													"description": ""
+												}
+											}
+										}
+									},
+									"totalTrailerQT": {
+										"type": "integer",
+										"format": "int32",
+										"description": ""
+									},
+									"usdotnb": {
+										"type": "number",
+										"description": ""
+									}
+								}
+							}
+						}
+					},
+					"404": {
+						"description": "404 Not Found",
+						"schema": {
+							"type": "object"
+						}
+					},
+					"417": {
+						"description": "417 Expectation Failed",
+						"schema": {
+							"type": "object"
+						}
+					},
+					"503": {
+						"description": "503 Service Unavailable",
+						"schema": {
+							"type": "object"
+						}
+					}
+				}
+			}
+		},
+		"/v1/ops/tlcarriers/usdots/{dotNB}": {
+			"get": {
+				"tags": ["core"],
+				"summary": "getTLCarriersByDOTNB",
+				"description": "Return all or partial TLCarrier entities based on params",
+				"parameters": [{
+						"name": "dotNB",
+						"in": "path",
+						"description": "dotNB",
+						"required": true,
+						"type": "string"
+					}, {
+						"name": "addrType",
+						"in": "query",
+						"description": "Query based on address type name from GEN.Address_Type",
+						"required": true,
+						"type": "string"
+					}, {
+						"name": "full",
+						"in": "query",
+						"description": "Set to true to return ALL child entities, false to return TL_Carrier & TL_Carrier_Address",
+						"required": true,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"type": "array",
+							"description": "",
+							"items": {
+								"type": "object",
+								"description": "",
+								"properties": {
+									"activeStatusIN": {
+										"type": "string",
+										"description": ""
+									},
+									"carrierFleetTypeNM": {
+										"type": "string",
+										"description": ""
+									},
+									"carrierNM": {
+										"type": "string",
+										"description": ""
+									},
+									"carrierSafetyRatingTypeNM": {
+										"type": "string",
+										"description": ""
+									},
+									"driverQT": {
+										"type": "integer",
+										"format": "int32",
+										"description": ""
+									},
+									"emailAddressTX": {
+										"type": "string",
+										"description": ""
+									},
+									"motorCarrierNB": {
+										"type": "string",
+										"description": ""
+									},
+									"relationshipOwnerID": {
+										"type": "string",
+										"description": ""
+									},
+									"scaccd": {
+										"type": "string",
+										"description": ""
+									},
+									"tlcarrierAddress": {
+										"type": "array",
+										"description": "",
+										"items": {
+											"type": "object",
+											"description": "",
+											"properties": {
+												"addressTypeKEY": {
+													"type": "integer",
+													"format": "int32",
+													"description": ""
+												},
+												"addressTypeNM": {
+													"type": "string",
+													"description": ""
+												},
+												"addressTypeSequenceQT": {
+													"type": "integer",
+													"format": "int32",
+													"description": ""
+												},
+												"carrierFacilityNM": {
+													"type": "string",
+													"description": ""
+												},
+												"cityNM": {
+													"type": "string",
+													"description": ""
+												},
+												"countryCD": {
+													"type": "string",
+													"description": ""
+												},
+												"countyNM": {
+													"type": "string",
+													"description": ""
+												},
+												"dropTrailerIN": {
+													"type": "string",
+													"description": ""
+												},
+												"hazmatCertifiedIN": {
+													"type": "string",
+													"description": ""
+												},
+												"localDriverIN": {
+													"type": "string",
+													"description": ""
+												},
+												"postalCD": {
+													"type": "string",
+													"description": ""
+												},
+												"postalPlus4CD": {
+													"type": "string",
+													"description": ""
+												},
+												"squareFootageQT": {
+													"type": "integer",
+													"format": "int32",
+													"description": ""
+												},
+												"stateProvinceCD": {
+													"type": "string",
+													"description": ""
+												},
+												"streetAddressLine1TX": {
+													"type": "string",
+													"description": ""
+												},
+												"streetAddressLine2TX": {
+													"type": "string",
+													"description": ""
+												},
+												"tlcarrierAddressKEY": {
+													"type": "integer",
+													"format": "int32",
+													"description": ""
+												},
+												"tlcarrierContact": {
+													"type": "array",
+													"description": "",
+													"items": {
+														"type": "object",
+														"description": "",
+														"properties": {
+															"contactFirstNM": {
+																"type": "string",
+																"description": ""
+															},
+															"contactLastNM": {
+																"type": "string",
+																"description": ""
+															},
+															"contactRoleNM": {
+																"type": "string",
+																"description": ""
+															},
+															"contactSequenceOrderNB": {
+																"type": "integer",
+																"format": "int32",
+																"description": ""
+															},
+															"contactTypeNM": {
+																"type": "string",
+																"description": ""
+															},
+															"emailAddressTX": {
+																"type": "string",
+																"description": ""
+															},
+															"mobilePhoneNB": {
+																"type": "string",
+																"description": ""
+															},
+															"phoneNB": {
+																"type": "string",
+																"description": ""
+															},
+															"tlcarrierAddressKEY": {
+																"type": "integer",
+																"format": "int32",
+																"description": ""
+															},
+															"tlcarrierContactKEY": {
+																"type": "integer",
+																"format": "int32",
+																"description": ""
+															},
+															"tLContactRoleKEY": {
+																"type": "integer",
+																"format": "int32",
+																"description": ""
+															},
+															"tlContactTypeKEY": {
+																"type": "integer",
+																"format": "int32",
+																"description": ""
+															}
+														}
+													}
+												},
+												"tlcarrierKEY": {
+													"type": "integer",
+													"format": "int32",
+													"description": ""
+												}
+											}
+										}
+									},
+									"tlcarrierCertification": {
+										"type": "array",
+										"description": "",
+										"items": {
+											"type": "object",
+											"description": "",
+											"properties": {
+												"certificationTypeNM": {
+													"type": "string",
+													"description": ""
+												},
+												"tlcarrierCertificationKEY": {
+													"type": "integer",
+													"format": "int32",
+													"description": ""
+												},
+												"tlcarrierCertificationTypeKEY": {
+													"type": "integer",
+													"format": "int32",
+													"description": ""
+												},
+												"tlcarrierKEY": {
+													"type": "integer",
+													"format": "int32",
+													"description": ""
+												}
+											}
+										}
+									},
+									"tlcarrierDutyClassification": {
+										"type": "array",
+										"description": "",
+										"items": {
+											"type": "object",
+											"description": "",
+											"properties": {
+												"gvwrdutyClassificationTypeNM": {
+													"type": "string",
+													"description": ""
+												},
+												"tlcarrierDutyClassificationKEY": {
+													"type": "integer",
+													"format": "int32",
+													"description": ""
+												},
+												"tlcarrierKEY": {
+													"type": "integer",
+													"format": "int32",
+													"description": ""
+												},
+												"tlgvwrdutyClassificationTypeKEY": {
+													"type": "integer",
+													"format": "int32",
+													"description": ""
+												}
+											}
+										}
+									},
+									"tlcarrierKEY": {
+										"type": "integer",
+										"format": "int32",
+										"description": ""
+									},
+									"tlcarrierLane": {
+										"type": "array",
+										"description": "",
+										"items": {
+											"type": "object",
+											"description": "",
+											"properties": {
+												"permanentLaneIN": {
+													"type": "string",
+													"description": ""
+												},
+												"tlcarrierKEY": {
+													"type": "integer",
+													"format": "int32",
+													"description": ""
+												},
+												"tlcarrierLaneKEY": {
+													"type": "integer",
+													"format": "int32",
+													"description": ""
+												},
+												"tlcarrierLaneTrailer": {
+													"type": "array",
+													"description": "",
+													"items": {
+														"type": "object",
+														"description": "",
+														"properties": {
+															"estimatedCostAMT": {
+																"type": "number",
+																"description": ""
+															},
+															"lastDataCollectionDT": {
+																"type": "string",
+																"format": "date-time",
+																"description": ""
+															},
+															"tlcarrierLaneKEY": {
+																"type": "integer",
+																"format": "int32",
+																"description": ""
+															},
+															"tlcarrierLaneTrailerDOW": {
+																"type": "array",
+																"items": {
+																	"type": "object",
+																	"description": "",
+																	"properties": {
+																		"dayOfWeekNB": {
+																			"type": "integer",
+																			"format": "int32",
+																			"description": ""
+																		},
+																		"dayOfWeekNM": {
+																			"type": "string",
+																			"description": ""
+																		},
+																		"dowrunQT": {
+																			"type": "integer",
+																			"format": "int32",
+																			"description": ""
+																		},
+																		"tlcarrierLaneTrailerDOWKEY": {
+																			"type": "integer",
+																			"format": "int32",
+																			"description": ""
+																		},
+																		"tlcarrierLaneTrailerKEY": {
+																			"type": "integer",
+																			"format": "int32",
+																			"description": ""
+																		},
+																		"dayOfWeekAbbr2CD": {
+																			"type": "string",
+																			"description": ""
+																		}
+																	}
+																}
+															},
+															"tlcarrierLaneTrailerKEY": {
+																"type": "integer",
+																"format": "int32",
+																"description": ""
+															},
+															"tltrailerClassKEY": {
+																"type": "integer",
+																"format": "int32",
+																"description": ""
+															},
+															"tltrailerSubTypeKEY": {
+																"type": "integer",
+																"format": "int32",
+																"description": ""
+															},
+															"tltrailerSubTypeNM": {
+																"type": "string",
+																"description": ""
+															},
+															"tltrailerTypeKEY": {
+																"type": "integer",
+																"format": "int32",
+																"description": ""
+															},
+															"tltrailerTypeNM": {
+																"type": "string",
+																"description": ""
+															},
+															"trailerAvailableQT": {
+																"type": "integer",
+																"format": "int32",
+																"description": ""
+															},
+															"trailerLengthinFeetQT": {
+																"type": "integer",
+																"format": "int32",
+																"description": ""
+															}
+														}
+													}
+												},
+												"tllaneKEY": {
+													"type": "integer",
+													"format": "int32",
+													"description": ""
+												},
+												"tlLane": {
+													"type": "object",
+													"description": "",
+													"items": {
+														"type": "object",
+														"description": "",
+														"properties": {
+															"tLLaneKEY": {
+																"type": "integer",
+																"description": ""
+															},
+															"postalAreaOriginKEY": {
+																"type": "integer",
+																"format": "int32",
+																"description": ""
+															},
+															"postalAreaDestinationKEY": {
+																"type": "integer",
+																"format": "int32",
+																"description": ""
+															},
+															"postalAreaOrigin": {
+																"type": "object",
+																"description": "",
+																"items": {
+																	"type": "object",
+																	"description": "",
+																	"properties": {
+																		"postalAreaKEY": {
+																			"type": "integer",
+																			"description": ""
+																		},
+																		"postalCD": {
+																			"type": "string",
+																			"description": ""
+																		},
+																		"cityNM": {
+																			"type": "string",
+																			"description": ""
+																		},
+																		"stateCD": {
+																			"type": "string",
+																			"description": ""
+																		},
+																		"countryCD": {
+																			"type": "string",
+																			"description": ""
+																		},
+																		"latitude": {
+																			"type": "integer",
+																			"description": ""
+																		},
+																		"longitute": {
+																			"type": "integer",
+																			"description": ""
+																		}
+																	}
+																}
+															},
+															"postalAreaDestination": {
+																"type": "object",
+																"description": "",
+																"items": {
+																	"type": "object",
+																	"description": "",
+																	"properties": {
+																		"postalAreaKEY": {
+																			"type": "integer",
+																			"description": ""
+																		},
+																		"postalCD": {
+																			"type": "string",
+																			"description": ""
+																		},
+																		"cityNM": {
+																			"type": "string",
+																			"description": ""
+																		},
+																		"stateCD": {
+																			"type": "string",
+																			"description": ""
+																		},
+																		"countryCD": {
+																			"type": "string",
+																			"description": ""
+																		},
+																		"latitude": {
+																			"type": "integer",
+																			"description": ""
+																		},
+																		"longitute": {
+																			"type": "integer",
+																			"description": ""
+																		}
+																	}
+																}
+															}
+														}
+													}
+												}
+											}
+										}
+									},
+									"tlcarrierSafetyRatingTypeKEY": {
+										"type": "integer",
+										"format": "int32",
+										"description": ""
+									},
+									"tlcarrierTrailer": {
+										"type": "array",
+										"description": "",
+										"items": {
+											"type": "object",
+											"description": "",
+											"properties": {
+												"tlcarrierKEY": {
+													"type": "integer",
+													"format": "int32",
+													"description": ""
+												},
+												"tlcarrierTrailerKEY": {
+													"type": "integer",
+													"format": "int32",
+													"description": ""
+												},
+												"tltrailerClassKEY": {
+													"type": "integer",
+													"format": "int32",
+													"description": ""
+												},
+												"tltrailerSubTypeKEY": {
+													"type": "integer",
+													"format": "int32",
+													"description": ""
+												},
+												"tltrailerSubTypeNM": {
+													"type": "string",
+													"description": ""
+												},
+												"tltrailerTypeKEY": {
+													"type": "integer",
+													"format": "int32",
+													"description": ""
+												},
+												"tltrailerTypeNM": {
+													"type": "string",
+													"description": ""
+												},
+												"trailerLengthinFeetQT": {
+													"type": "integer",
+													"format": "int32",
+													"description": ""
+												},
+												"trailerQT": {
+													"type": "integer",
+													"format": "int32",
+													"description": ""
+												}
+											}
+										}
+									},
+									"totalTrailerQT": {
+										"type": "integer",
+										"format": "int32",
+										"description": ""
+									},
+									"usdotnb": {
+										"type": "number",
+										"description": ""
+									}
+								}
+							}
+						}
+					},
+					"404": {
+						"description": "404 Not Found",
+						"schema": {
+							"type": "object"
+						}
+					},
+					"417": {
+						"description": "417 Expectation Failed",
+						"schema": {
+							"type": "object"
+						}
+					},
+					"503": {
+						"description": "503 Service Unavailable",
+						"schema": {
+							"type": "object"
+						}
+					}
+				}
+			}
+		},
+		"/v1/ops/tlcarriers/{id}": {
+			"get": {
+				"tags": ["core"],
+				"summary": "getTLCarriersByID",
+				"description": "Returns TLCarrier entity based on TLCarrierKEY ID",
+				"parameters": [{
+						"name": "id",
+						"in": "path",
+						"description": "id",
+						"required": true,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"type": "object",
+							"description": "",
+							"properties": {
+								"activeStatusIN": {
+									"type": "string",
+									"description": ""
+								},
+								"carrierFleetTypeNM": {
+									"type": "string",
+									"description": ""
+								},
+								"carrierNM": {
+									"type": "string",
+									"description": ""
+								},
+								"carrierSafetyRatingTypeNM": {
+									"type": "string",
+									"description": ""
+								},
+								"driverQT": {
+									"type": "integer",
+									"format": "int32",
+									"description": ""
+								},
+								"emailAddressTX": {
+									"type": "string",
+									"description": ""
+								},
+								"motorCarrierNB": {
+									"type": "string",
+									"description": ""
+								},
+								"relationshipOwnerID": {
+									"type": "string",
+									"description": ""
+								},
+								"scaccd": {
+									"type": "string",
+									"description": ""
+								},
+								"tlcarrierAddress": {
+									"type": "array",
+									"description": "",
+									"items": {
+										"type": "object",
+										"description": "",
+										"properties": {
+											"addressTypeKEY": {
+												"type": "integer",
+												"format": "int32",
+												"description": ""
+											},
+											"addressTypeNM": {
+												"type": "string",
+												"description": ""
+											},
+											"addressTypeSequenceQT": {
+												"type": "integer",
+												"format": "int32",
+												"description": ""
+											},
+											"carrierFacilityNM": {
+												"type": "string",
+												"description": ""
+											},
+											"cityNM": {
+												"type": "string",
+												"description": ""
+											},
+											"countryCD": {
+												"type": "string",
+												"description": ""
+											},
+											"countyNM": {
+												"type": "string",
+												"description": ""
+											},
+											"dropTrailerIN": {
+												"type": "string",
+												"description": ""
+											},
+											"hazmatCertifiedIN": {
+												"type": "string",
+												"description": ""
+											},
+											"localDriverIN": {
+												"type": "string",
+												"description": ""
+											},
+											"postalCD": {
+												"type": "string",
+												"description": ""
+											},
+											"postalPlus4CD": {
+												"type": "string",
+												"description": ""
+											},
+											"squareFootageQT": {
+												"type": "integer",
+												"format": "int32",
+												"description": ""
+											},
+											"stateProvinceCD": {
+												"type": "string",
+												"description": ""
+											},
+											"streetAddressLine1TX": {
+												"type": "string",
+												"description": ""
+											},
+											"streetAddressLine2TX": {
+												"type": "string",
+												"description": ""
+											},
+											"tlcarrierAddressKEY": {
+												"type": "integer",
+												"format": "int32",
+												"description": ""
+											},
+											"tlcarrierContact": {
+												"type": "array",
+												"description": "",
+												"items": {
+													"type": "object",
+													"description": "",
+													"properties": {
+														"contactFirstNM": {
+															"type": "string",
+															"description": ""
+														},
+														"contactLastNM": {
+															"type": "string",
+															"description": ""
+														},
+														"contactRoleNM": {
+															"type": "string",
+															"description": ""
+														},
+														"contactSequenceOrderNB": {
+															"type": "integer",
+															"format": "int32",
+															"description": ""
+														},
+														"contactTypeNM": {
+															"type": "string",
+															"description": ""
+														},
+														"emailAddressTX": {
+															"type": "string",
+															"description": ""
+														},
+														"mobilePhoneNB": {
+															"type": "string",
+															"description": ""
+														},
+														"phoneNB": {
+															"type": "string",
+															"description": ""
+														},
+														"tlcarrierAddressKEY": {
+															"type": "integer",
+															"format": "int32",
+															"description": ""
+														},
+														"tlcarrierContactKEY": {
+															"type": "integer",
+															"format": "int32",
+															"description": ""
+														},
+														"tLContactRoleKEY": {
+															"type": "integer",
+															"format": "int32",
+															"description": ""
+														},
+														"tlContactTypeKEY": {
+															"type": "integer",
+															"format": "int32",
+															"description": ""
+														}
+													}
+												}
+											},
+											"tlcarrierKEY": {
+												"type": "integer",
+												"format": "int32",
+												"description": ""
+											}
+										}
+									}
+								},
+								"tlcarrierCertification": {
+									"type": "array",
+									"description": "",
+									"items": {
+										"type": "object",
+										"description": "",
+										"properties": {
+											"certificationTypeNM": {
+												"type": "string",
+												"description": ""
+											},
+											"tlcarrierCertificationKEY": {
+												"type": "integer",
+												"format": "int32",
+												"description": ""
+											},
+											"tlcarrierCertificationTypeKEY": {
+												"type": "integer",
+												"format": "int32",
+												"description": ""
+											},
+											"tlcarrierKEY": {
+												"type": "integer",
+												"format": "int32",
+												"description": ""
+											}
+										}
+									}
+								},
+								"tlcarrierDutyClassification": {
+									"type": "array",
+									"description": "",
+									"items": {
+										"type": "object",
+										"description": "",
+										"properties": {
+											"gvwrdutyClassificationTypeNM": {
+												"type": "string",
+												"description": ""
+											},
+											"tlcarrierDutyClassificationKEY": {
+												"type": "integer",
+												"format": "int32",
+												"description": ""
+											},
+											"tlcarrierKEY": {
+												"type": "integer",
+												"format": "int32",
+												"description": ""
+											},
+											"tlgvwrdutyClassificationTypeKEY": {
+												"type": "integer",
+												"format": "int32",
+												"description": ""
+											}
+										}
+									}
+								},
+								"tlcarrierKEY": {
+									"type": "integer",
+									"format": "int32",
+									"description": ""
+								},
+								"tlcarrierLane": {
+									"type": "array",
+									"items": {
+										"type": "object",
+										"description": "",
+										"properties": {
+											"permanentLaneIN": {
+												"type": "string",
+												"description": ""
+											},
+											"tlcarrierKEY": {
+												"type": "integer",
+												"format": "int32",
+												"description": ""
+											},
+											"tlcarrierLaneKEY": {
+												"type": "integer",
+												"format": "int32",
+												"description": ""
+											},
+											"tlcarrierLaneTrailer": {
+												"type": "array",
+												"items": {
+													"type": "object",
+													"description": "",
+													"properties": {
+														"estimatedCostAMT": {
+															"type": "number",
+															"description": ""
+														},
+														"lastDataCollectionDT": {
+															"type": "string",
+															"format": "date-time",
+															"description": ""
+														},
+														"tlcarrierLaneKEY": {
+															"type": "integer",
+															"format": "int32",
+															"description": ""
+														},
+														"tlcarrierLaneTrailerDOW": {
+															"type": "array",
+															"items": {
+																"type": "object",
+																"description": "",
+																"properties": {
+																	"dayOfWeekNB": {
+																		"type": "integer",
+																		"format": "int32",
+																		"description": ""
+																	},
+																	"dayOfWeekNM": {
+																		"type": "string",
+																		"description": ""
+																	},
+																	"dowrunQT": {
+																		"type": "integer",
+																		"format": "int32",
+																		"description": ""
+																	},
+																	"tlcarrierLaneTrailerDOWKEY": {
+																		"type": "integer",
+																		"format": "int32",
+																		"description": ""
+																	},
+																	"tlcarrierLaneTrailerKEY": {
+																		"type": "integer",
+																		"format": "int32",
+																		"description": ""
+																	},
+																	"dayOfWeekAbbr2CD": {
+																		"type": "string",
+																		"description": ""
+																	}
+																}
+															}
+														},
+														"tlcarrierLaneTrailerKEY": {
+															"type": "integer",
+															"format": "int32",
+															"description": ""
+														},
+														"tltrailerClassKEY": {
+															"type": "integer",
+															"format": "int32",
+															"description": ""
+														},
+														"tltrailerSubTypeKEY": {
+															"type": "integer",
+															"format": "int32",
+															"description": ""
+														},
+														"tltrailerSubTypeNM": {
+															"type": "string",
+															"description": ""
+														},
+														"tltrailerTypeKEY": {
+															"type": "integer",
+															"format": "int32",
+															"description": ""
+														},
+														"tltrailerTypeNM": {
+															"type": "string",
+															"description": ""
+														},
+														"trailerAvailableQT": {
+															"type": "integer",
+															"format": "int32",
+															"description": ""
+														},
+														"trailerLengthinFeetQT": {
+															"type": "integer",
+															"format": "int32",
+															"description": ""
+														}
+													}
+												}
+											},
+											"tllaneKEY": {
+												"type": "integer",
+												"format": "int32",
+												"description": ""
+											},
+											"tlLane": {
+												"type": "object",
+												"items": {
+													"type": "object",
+													"description": "",
+													"properties": {
+														"tLLaneKEY": {
+															"type": "integer",
+															"description": ""
+														},
+														"postalAreaOriginKEY": {
+															"type": "integer",
+															"format": "int32",
+															"description": ""
+														},
+														"postalAreaDestinationKEY": {
+															"type": "integer",
+															"format": "int32",
+															"description": ""
+														},
+														"postalAreaOrigin": {
+															"type": "object",
+															"items": {
+																"type": "object",
+																"description": "",
+																"properties": {
+																	"postalAreaKEY": {
+																		"type": "integer",
+																		"description": ""
+																	},
+																	"postalCD": {
+																		"type": "string",
+																		"description": ""
+																	},
+																	"cityNM": {
+																		"type": "string",
+																		"description": ""
+																	},
+																	"stateCD": {
+																		"type": "string",
+																		"description": ""
+																	},
+																	"countryCD": {
+																		"type": "string",
+																		"description": ""
+																	},
+																	"latitude": {
+																		"type": "integer",
+																		"description": ""
+																	},
+																	"longitute": {
+																		"type": "integer",
+																		"description": ""
+																	}
+																}
+															}
+														},
+														"postalAreaDestination": {
+															"type": "object",
+															"items": {
+																"type": "object",
+																"description": "",
+																"properties": {
+																	"postalAreaKEY": {
+																		"type": "integer",
+																		"description": ""
+																	},
+																	"postalCD": {
+																		"type": "string",
+																		"description": ""
+																	},
+																	"cityNM": {
+																		"type": "string",
+																		"description": ""
+																	},
+																	"stateCD": {
+																		"type": "string",
+																		"description": ""
+																	},
+																	"countryCD": {
+																		"type": "string",
+																		"description": ""
+																	},
+																	"latitude": {
+																		"type": "integer",
+																		"description": ""
+																	},
+																	"longitute": {
+																		"type": "integer",
+																		"description": ""
+																	}
+																}
+															}
+														}
+													}
+												}
+											}
+										}
+									}
+								},
+								"tlcarrierSafetyRatingTypeKEY": {
+									"type": "integer",
+									"format": "int32",
+									"description": ""
+								},
+								"tlcarrierTrailer": {
+									"type": "array",
+									"items": {
+										"type": "object",
+										"description": "",
+										"properties": {
+											"tlcarrierKEY": {
+												"type": "integer",
+												"format": "int32",
+												"description": ""
+											},
+											"tlcarrierTrailerKEY": {
+												"type": "integer",
+												"format": "int32",
+												"description": ""
+											},
+											"tltrailerClassKEY": {
+												"type": "integer",
+												"format": "int32",
+												"description": ""
+											},
+											"tltrailerSubTypeKEY": {
+												"type": "integer",
+												"format": "int32",
+												"description": ""
+											},
+											"tltrailerSubTypeNM": {
+												"type": "string",
+												"description": ""
+											},
+											"tltrailerTypeKEY": {
+												"type": "integer",
+												"format": "int32",
+												"description": ""
+											},
+											"tltrailerTypeNM": {
+												"type": "string",
+												"description": ""
+											},
+											"trailerLengthinFeetQT": {
+												"type": "integer",
+												"format": "int32",
+												"description": ""
+											},
+											"trailerQT": {
+												"type": "integer",
+												"format": "int32",
+												"description": ""
+											}
+										}
+									}
+								},
+								"totalTrailerQT": {
+									"type": "integer",
+									"format": "int32",
+									"description": ""
+								},
+								"usdotnb": {
+									"type": "number",
+									"description": ""
+								}
+							}
+						}
+					},
+					"404": {
+						"description": "404 Not Found",
+						"schema": {
+							"type": "object"
+						}
+					},
+					"417": {
+						"description": "417 Expectation Failed",
+						"schema": {
+							"type": "object"
+						}
+					},
+					"503": {
+						"description": "503 Service Unavailable",
+						"schema": {
+							"type": "object"
+						}
+					}
+				}
+			}
+		}
+	},
+	"definitions": {
+		"TLCarrierPartial": {
+			"type": "object",
+			"description": "",
+			"properties": {
+				"activeStatusIN": {
+					"type": "string",
+					"description": ""
+				},
+				"carrierFleetTypeNM": {
+					"type": "string",
+					"description": ""
+				},
+				"carrierNM": {
+					"type": "string",
+					"description": ""
+				},
+				"carrierSafetyRatingTypeNM": {
+					"type": "string",
+					"description": ""
+				},
+				"driverQT": {
+					"type": "integer",
+					"format": "int32",
+					"description": ""
+				},
+				"emailAddressTX": {
+					"type": "string",
+					"description": ""
+				},
+				"motorCarrierNB": {
+					"type": "string",
+					"description": ""
+				},
+				"relationshipOwnerID": {
+					"type": "string",
+					"description": ""
+				},
+				"scaccd": {
+					"type": "string",
+					"description": ""
+				},
+				"tlcarrierAddress": {
+					"type": "array",
+					"description": "",
+					"items": {
+						"type": "object",
+						"description": "",
+						"properties": {
+							"addressTypeKEY": {
+								"type": "integer",
+								"format": "int32",
+								"description": ""
+							},
+							"addressTypeNM": {
+								"type": "string",
+								"description": ""
+							},
+							"addressTypeSequenceQT": {
+								"type": "integer",
+								"format": "int32",
+								"description": ""
+							},
+							"carrierFacilityNM": {
+								"type": "string",
+								"description": ""
+							},
+							"cityNM": {
+								"type": "string",
+								"description": ""
+							},
+							"countryCD": {
+								"type": "string",
+								"description": ""
+							},
+							"countyNM": {
+								"type": "string",
+								"description": ""
+							},
+							"dropTrailerIN": {
+								"type": "string",
+								"description": ""
+							},
+							"hazmatCertifiedIN": {
+								"type": "string",
+								"description": ""
+							},
+							"localDriverIN": {
+								"type": "string",
+								"description": ""
+							},
+							"postalCD": {
+								"type": "string",
+								"description": ""
+							},
+							"postalPlus4CD": {
+								"type": "string",
+								"description": ""
+							},
+							"squareFootageQT": {
+								"type": "integer",
+								"format": "int32",
+								"description": ""
+							},
+							"stateProvinceCD": {
+								"type": "string",
+								"description": ""
+							},
+							"streetAddressLine1TX": {
+								"type": "string",
+								"description": ""
+							},
+							"streetAddressLine2TX": {
+								"type": "string",
+								"description": ""
+							},
+							"tlcarrierAddressKEY": {
+								"type": "integer",
+								"format": "int32",
+								"description": ""
+							},
+							"tlcarrierKEY": {
+								"type": "integer",
+								"format": "int32",
+								"description": ""
+							}
+						}
+					}
+				},
+				"tlcarrierKEY": {
+					"type": "integer",
+					"format": "int32",
+					"description": ""
+				},
+				"tlcarrierSafetyRatingTypeKEY": {
+					"type": "integer",
+					"format": "int32",
+					"description": ""
+				},
+				"totalTrailerQT": {
+					"type": "integer",
+					"format": "int32",
+					"description": ""
+				},
+				"usdotnb": {
+					"type": "number",
+					"description": ""
+				}
+			}
+		},
+		"TLCarrierAddressPartial": {
+			"type": "object",
+			"description": "",
+			"properties": {
+				"addressTypeKEY": {
+					"type": "integer",
+					"format": "int32",
+					"description": ""
+				},
+				"addressTypeNM": {
+					"type": "string",
+					"description": ""
+				},
+				"addressTypeSequenceQT": {
+					"type": "integer",
+					"format": "int32",
+					"description": ""
+				},
+				"carrierFacilityNM": {
+					"type": "string",
+					"description": ""
+				},
+				"cityNM": {
+					"type": "string",
+					"description": ""
+				},
+				"countryCD": {
+					"type": "string",
+					"description": ""
+				},
+				"countyNM": {
+					"type": "string",
+					"description": ""
+				},
+				"dropTrailerIN": {
+					"type": "string",
+					"description": ""
+				},
+				"hazmatCertifiedIN": {
+					"type": "string",
+					"description": ""
+				},
+				"localDriverIN": {
+					"type": "string",
+					"description": ""
+				},
+				"postalCD": {
+					"type": "string",
+					"description": ""
+				},
+				"postalPlus4CD": {
+					"type": "string",
+					"description": ""
+				},
+				"squareFootageQT": {
+					"type": "integer",
+					"format": "int32",
+					"description": ""
+				},
+				"stateProvinceCD": {
+					"type": "string",
+					"description": ""
+				},
+				"streetAddressLine1TX": {
+					"type": "string",
+					"description": ""
+				},
+				"streetAddressLine2TX": {
+					"type": "string",
+					"description": ""
+				},
+				"tlcarrierAddressKEY": {
+					"type": "integer",
+					"format": "int32",
+					"description": ""
+				},
+				"tlcarrierKEY": {
+					"type": "integer",
+					"format": "int32",
+					"description": ""
+				}
+			}
+		},
+		"TLCarrier": {
+			"type": "object",
+			"description": "",
+			"properties": {
+				"activeStatusIN": {
+					"type": "string",
+					"description": ""
+				},
+				"carrierFleetTypeNM": {
+					"type": "string",
+					"description": ""
+				},
+				"carrierNM": {
+					"type": "string",
+					"description": ""
+				},
+				"carrierSafetyRatingTypeNM": {
+					"type": "string",
+					"description": ""
+				},
+				"driverQT": {
+					"type": "integer",
+					"format": "int32",
+					"description": ""
+				},
+				"emailAddressTX": {
+					"type": "string",
+					"description": ""
+				},
+				"motorCarrierNB": {
+					"type": "string",
+					"description": ""
+				},
+				"relationshipOwnerID": {
+					"type": "string",
+					"description": ""
+				},
+				"scaccd": {
+					"type": "string",
+					"description": ""
+				},
+				"tlcarrierAddress": {
+					"type": "array",
+					"description": "",
+					"items": {
+						"type": "object",
+						"description": "",
+						"properties": {
+							"addressTypeKEY": {
+								"type": "integer",
+								"format": "int32",
+								"description": ""
+							},
+							"addressTypeNM": {
+								"type": "string",
+								"description": ""
+							},
+							"addressTypeSequenceQT": {
+								"type": "integer",
+								"format": "int32",
+								"description": ""
+							},
+							"carrierFacilityNM": {
+								"type": "string",
+								"description": ""
+							},
+							"cityNM": {
+								"type": "string",
+								"description": ""
+							},
+							"countryCD": {
+								"type": "string",
+								"description": ""
+							},
+							"countyNM": {
+								"type": "string",
+								"description": ""
+							},
+							"dropTrailerIN": {
+								"type": "string",
+								"description": ""
+							},
+							"hazmatCertifiedIN": {
+								"type": "string",
+								"description": ""
+							},
+							"localDriverIN": {
+								"type": "string",
+								"description": ""
+							},
+							"postalCD": {
+								"type": "string",
+								"description": ""
+							},
+							"postalPlus4CD": {
+								"type": "string",
+								"description": ""
+							},
+							"squareFootageQT": {
+								"type": "integer",
+								"format": "int32",
+								"description": ""
+							},
+							"stateProvinceCD": {
+								"type": "string",
+								"description": ""
+							},
+							"streetAddressLine1TX": {
+								"type": "string",
+								"description": ""
+							},
+							"streetAddressLine2TX": {
+								"type": "string",
+								"description": ""
+							},
+							"tlcarrierAddressKEY": {
+								"type": "integer",
+								"format": "int32",
+								"description": ""
+							},
+							"tlcarrierContact": {
+								"type": "array",
+								"description": "",
+								"items": {
+									"type": "object",
+									"description": "",
+									"properties": {
+										"contactFirstNM": {
+											"type": "string",
+											"description": ""
+										},
+										"contactLastNM": {
+											"type": "string",
+											"description": ""
+										},
+										"contactRoleNM": {
+											"type": "string",
+											"description": ""
+										},
+										"contactSequenceOrderNB": {
+											"type": "integer",
+											"format": "int32",
+											"description": ""
+										},
+										"contactTypeNM": {
+											"type": "string",
+											"description": ""
+										},
+										"emailAddressTX": {
+											"type": "string",
+											"description": ""
+										},
+										"mobilePhoneNB": {
+											"type": "string",
+											"description": ""
+										},
+										"phoneNB": {
+											"type": "string",
+											"description": ""
+										},
+										"tlcarrierAddressKEY": {
+											"type": "integer",
+											"format": "int32",
+											"description": ""
+										},
+										"tlcarrierContactKEY": {
+											"type": "integer",
+											"format": "int32",
+											"description": ""
+										},
+										"tLContactRoleKEY": {
+											"type": "integer",
+											"format": "int32",
+											"description": ""
+										},
+										"tlContactTypeKEY": {
+											"type": "integer",
+											"format": "int32",
+											"description": ""
+										}
+									}
+								}
+							},
+							"tlcarrierKEY": {
+								"type": "integer",
+								"format": "int32",
+								"description": ""
+							}
+						}
+					}
+				},
+				"tlcarrierCertification": {
+					"type": "array",
+					"description": "",
+					"items": {
+						"type": "object",
+						"description": "",
+						"properties": {
+							"certificationTypeNM": {
+								"type": "string",
+								"description": ""
+							},
+							"tlcarrierCertificationKEY": {
+								"type": "integer",
+								"format": "int32",
+								"description": ""
+							},
+							"tlcarrierCertificationTypeKEY": {
+								"type": "integer",
+								"format": "int32",
+								"description": ""
+							},
+							"tlcarrierKEY": {
+								"type": "integer",
+								"format": "int32",
+								"description": ""
+							}
+						}
+					}
+				},
+				"tlcarrierDutyClassification": {
+					"type": "array",
+					"description": "",
+					"items": {
+						"type": "object",
+						"description": "",
+						"properties": {
+							"gvwrdutyClassificationTypeNM": {
+								"type": "string",
+								"description": ""
+							},
+							"tlcarrierDutyClassificationKEY": {
+								"type": "integer",
+								"format": "int32",
+								"description": ""
+							},
+							"tlcarrierKEY": {
+								"type": "integer",
+								"format": "int32",
+								"description": ""
+							},
+							"tlgvwrdutyClassificationTypeKEY": {
+								"type": "integer",
+								"format": "int32",
+								"description": ""
+							}
+						}
+					}
+				},
+				"tlcarrierKEY": {
+					"type": "integer",
+					"format": "int32",
+					"description": ""
+				},
+				"tlcarrierLane": {
+					"type": "array",
+					"description": "",
+					"items": {
+						"type": "object",
+						"description": "",
+						"properties": {
+							"permanentLaneIN": {
+								"type": "string",
+								"description": ""
+							},
+							"tlcarrierKEY": {
+								"type": "integer",
+								"format": "int32",
+								"description": ""
+							},
+							"tlcarrierLaneKEY": {
+								"type": "integer",
+								"format": "int32",
+								"description": ""
+							},
+							"tlcarrierLaneTrailer": {
+								"type": "array",
+								"description": "",
+								"items": {
+									"type": "object",
+									"description": "",
+									"properties": {
+										"estimatedCostAMT": {
+											"type": "number",
+											"description": ""
+										},
+										"lastDataCollectionDT": {
+											"type": "string",
+											"format": "date-time",
+											"description": ""
+										},
+										"tlcarrierLaneKEY": {
+											"type": "integer",
+											"format": "int32",
+											"description": ""
+										},
+										"tlcarrierLaneTrailerDOW": {
+											"type": "array",
+											"description": "",
+											"items": {
+												"type": "object",
+												"description": "",
+												"properties": {
+													"dayOfWeekNB": {
+														"type": "integer",
+														"format": "int32",
+														"description": ""
+													},
+													"dayOfWeekNM": {
+														"type": "string",
+														"description": ""
+													},
+													"dowrunQT": {
+														"type": "integer",
+														"format": "int32",
+														"description": ""
+													},
+													"tlcarrierLaneTrailerDOWKEY": {
+														"type": "integer",
+														"format": "int32",
+														"description": ""
+													},
+													"tlcarrierLaneTrailerKEY": {
+														"type": "integer",
+														"format": "int32",
+														"description": ""
+													},
+													"dayOfWeekAbbr2CD": {
+														"type": "string",
+														"description": ""
+													}
+												}
+											}
+										},
+										"tlcarrierLaneTrailerKEY": {
+											"type": "integer",
+											"format": "int32",
+											"description": ""
+										},
+										"tltrailerClassKEY": {
+											"type": "integer",
+											"format": "int32",
+											"description": ""
+										},
+										"tltrailerSubTypeKEY": {
+											"type": "integer",
+											"format": "int32",
+											"description": ""
+										},
+										"tltrailerSubTypeNM": {
+											"type": "string",
+											"description": ""
+										},
+										"tltrailerTypeKEY": {
+											"type": "integer",
+											"format": "int32",
+											"description": ""
+										},
+										"tltrailerTypeNM": {
+											"type": "string",
+											"description": ""
+										},
+										"trailerAvailableQT": {
+											"type": "integer",
+											"format": "int32",
+											"description": ""
+										},
+										"trailerLengthinFeetQT": {
+											"type": "integer",
+											"format": "int32",
+											"description": ""
+										}
+									}
+								}
+							},
+							"tllaneKEY": {
+								"type": "integer",
+								"format": "int32",
+								"description": ""
+							},
+							"tlLane": {
+								"type": "object",
+								"description": "",
+								"items": {
+									"type": "object",
+									"description": "",
+									"properties": {
+										"tLLaneKEY": {
+											"type": "integer",
+											"description": ""
+										},
+										"postalAreaOriginKEY": {
+											"type": "integer",
+											"format": "int32",
+											"description": ""
+										},
+										"postalAreaDestinationKEY": {
+											"type": "integer",
+											"format": "int32",
+											"description": ""
+										},
+										"postalAreaOrigin": {
+											"type": "object",
+											"description": "",
+											"items": {
+												"type": "object",
+												"description": "",
+												"properties": {
+													"postalAreaKEY": {
+														"type": "integer",
+														"description": ""
+													},
+													"postalCD": {
+														"type": "string",
+														"description": ""
+													},
+													"cityNM": {
+														"type": "string",
+														"description": ""
+													},
+													"stateCD": {
+														"type": "string",
+														"description": ""
+													},
+													"countryCD": {
+														"type": "string",
+														"description": ""
+													},
+													"latitude": {
+														"type": "integer",
+														"description": ""
+													},
+													"longitute": {
+														"type": "integer",
+														"description": ""
+													}
+												}
+											}
+										},
+										"postalAreaDestination": {
+											"type": "object",
+											"description": "",
+											"items": {
+												"type": "object",
+												"description": "",
+												"properties": {
+													"postalAreaKEY": {
+														"type": "integer",
+														"description": ""
+													},
+													"postalCD": {
+														"type": "string",
+														"description": ""
+													},
+													"cityNM": {
+														"type": "string",
+														"description": ""
+													},
+													"stateCD": {
+														"type": "string",
+														"description": ""
+													},
+													"countryCD": {
+														"type": "string",
+														"description": ""
+													},
+													"latitude": {
+														"type": "integer",
+														"description": ""
+													},
+													"longitute": {
+														"type": "integer",
+														"description": ""
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				},
+				"tlcarrierSafetyRatingTypeKEY": {
+					"type": "integer",
+					"format": "int32",
+					"description": ""
+				},
+				"tlcarrierTrailer": {
+					"type": "array",
+					"description": "",
+					"items": {
+						"type": "object",
+						"description": "",
+						"properties": {
+							"tlcarrierKEY": {
+								"type": "integer",
+								"format": "int32",
+								"description": ""
+							},
+							"tlcarrierTrailerKEY": {
+								"type": "integer",
+								"format": "int32",
+								"description": ""
+							},
+							"tltrailerClassKEY": {
+								"type": "integer",
+								"format": "int32",
+								"description": ""
+							},
+							"tltrailerSubTypeKEY": {
+								"type": "integer",
+								"format": "int32",
+								"description": ""
+							},
+							"tltrailerSubTypeNM": {
+								"type": "string",
+								"description": ""
+							},
+							"tltrailerTypeKEY": {
+								"type": "integer",
+								"format": "int32",
+								"description": ""
+							},
+							"tltrailerTypeNM": {
+								"type": "string",
+								"description": ""
+							},
+							"trailerLengthinFeetQT": {
+								"type": "integer",
+								"format": "int32",
+								"description": ""
+							},
+							"trailerQT": {
+								"type": "integer",
+								"format": "int32",
+								"description": ""
+							}
+						}
+					}
+				},
+				"totalTrailerQT": {
+					"type": "integer",
+					"format": "int32",
+					"description": ""
+				},
+				"usdotnb": {
+					"type": "number",
+					"description": ""
+				}
+			}
+		},
+		"TLCarrierAddress": {
+			"type": "object",
+			"description": "",
+			"properties": {
+				"addressTypeKEY": {
+					"type": "integer",
+					"format": "int32",
+					"description": ""
+				},
+				"addressTypeNM": {
+					"type": "string",
+					"description": ""
+				},
+				"addressTypeSequenceQT": {
+					"type": "integer",
+					"format": "int32",
+					"description": ""
+				},
+				"carrierFacilityNM": {
+					"type": "string",
+					"description": ""
+				},
+				"cityNM": {
+					"type": "string",
+					"description": ""
+				},
+				"countryCD": {
+					"type": "string",
+					"description": ""
+				},
+				"countyNM": {
+					"type": "string",
+					"description": ""
+				},
+				"dropTrailerIN": {
+					"type": "string",
+					"description": ""
+				},
+				"hazmatCertifiedIN": {
+					"type": "string",
+					"description": ""
+				},
+				"localDriverIN": {
+					"type": "string",
+					"description": ""
+				},
+				"postalCD": {
+					"type": "string",
+					"description": ""
+				},
+				"postalPlus4CD": {
+					"type": "string",
+					"description": ""
+				},
+				"squareFootageQT": {
+					"type": "integer",
+					"format": "int32",
+					"description": ""
+				},
+				"stateProvinceCD": {
+					"type": "string",
+					"description": ""
+				},
+				"streetAddressLine1TX": {
+					"type": "string",
+					"description": ""
+				},
+				"streetAddressLine2TX": {
+					"type": "string",
+					"description": ""
+				},
+				"tlcarrierAddressKEY": {
+					"type": "integer",
+					"format": "int32",
+					"description": ""
+				},
+				"tlcarrierContact": {
+					"type": "array",
+					"description": "",
+					"items": {
+						"type": "object",
+						"description": "",
+						"properties": {
+							"contactFirstNM": {
+								"type": "string",
+								"description": ""
+							},
+							"contactLastNM": {
+								"type": "string",
+								"description": ""
+							},
+							"contactRoleNM": {
+								"type": "string",
+								"description": ""
+							},
+							"contactSequenceOrderNB": {
+								"type": "integer",
+								"format": "int32",
+								"description": ""
+							},
+							"contactTypeNM": {
+								"type": "string",
+								"description": ""
+							},
+							"emailAddressTX": {
+								"type": "string",
+								"description": ""
+							},
+							"mobilePhoneNB": {
+								"type": "string",
+								"description": ""
+							},
+							"phoneNB": {
+								"type": "string",
+								"description": ""
+							},
+							"tlcarrierAddressKEY": {
+								"type": "integer",
+								"format": "int32",
+								"description": ""
+							},
+							"tlcarrierContactKEY": {
+								"type": "integer",
+								"format": "int32",
+								"description": ""
+							},
+							"tLContactRoleKEY": {
+								"type": "integer",
+								"format": "int32",
+								"description": ""
+							},
+							"tlContactTypeKEY": {
+								"type": "integer",
+								"format": "int32",
+								"description": ""
+							}
+						}
+					}
+				},
+				"tlcarrierKEY": {
+					"type": "integer",
+					"format": "int32",
+					"description": ""
+				}
+			}
+		},
+		"TLCarrierCertification": {
+			"type": "object",
+			"description": "",
+			"properties": {
+				"certificationTypeNM": {
+					"type": "string",
+					"description": ""
+				},
+				"tlcarrierCertificationKEY": {
+					"type": "integer",
+					"format": "int32",
+					"description": ""
+				},
+				"tlcarrierCertificationTypeKEY": {
+					"type": "integer",
+					"format": "int32",
+					"description": ""
+				},
+				"tlcarrierKEY": {
+					"type": "integer",
+					"format": "int32",
+					"description": ""
+				}
+			}
+		},
+		"TLCarrierCertificationType": {
+			"type": "object",
+			"description": "",
+			"properties": {
+				"certificationTypeNM": {
+					"type": "string",
+					"description": ""
+				},
+				"tlcarrierCertificationTypeKEY": {
+					"type": "integer",
+					"format": "int32",
+					"description": ""
+				},
+				"certificationDS": {
+					"type": "string",
+					"description": ""
+				}
+			}
+		},
+		"TLLane": {
+			"type": "object",
+			"description": "",
+			"properties": {
+				"tLLaneKEY": {
+					"type": "integer",
+					"description": ""
+				},
+				"postalAreaOriginKEY": {
+					"type": "integer",
+					"format": "int32",
+					"description": ""
+				},
+				"postalAreaDestinationKEY": {
+					"type": "integer",
+					"format": "int32",
+					"description": ""
+				},
+				"postalAreaOrigin": {
+					"type": "object",
+					"description": "",
+					"items": {
+						"type": "object",
+						"description": "",
+						"properties": {
+							"postalAreaKEY": {
+								"type": "integer",
+								"description": ""
+							},
+							"postalCD": {
+								"type": "string",
+								"description": ""
+							},
+							"cityNM": {
+								"type": "string",
+								"description": ""
+							},
+							"stateCD": {
+								"type": "string",
+								"description": ""
+							},
+							"countryCD": {
+								"type": "string",
+								"description": ""
+							},
+							"latitude": {
+								"type": "integer",
+								"description": ""
+							},
+							"longitute": {
+								"type": "integer",
+								"description": ""
+							}
+						}
+					}
+				},
+				"postalAreaDestination": {
+					"type": "object",
+					"description": "",
+					"items": {
+						"type": "object",
+						"description": "",
+						"properties": {
+							"postalAreaKEY": {
+								"type": "integer",
+								"description": ""
+							},
+							"postalCD": {
+								"type": "string",
+								"description": ""
+							},
+							"cityNM": {
+								"type": "string",
+								"description": ""
+							},
+							"stateCD": {
+								"type": "string",
+								"description": ""
+							},
+							"countryCD": {
+								"type": "string",
+								"description": ""
+							},
+							"latitude": {
+								"type": "integer",
+								"description": ""
+							},
+							"longitute": {
+								"type": "integer",
+								"description": ""
+							}
+						}
+					}
+				}
+			}
+		},
+		"PostalArea": {
+			"type": "object",
+			"description": "",
+			"properties": {
+				"postalAreaKEY": {
+					"type": "integer",
+					"description": ""
+				},
+				"postalCD": {
+					"type": "string",
+					"description": ""
+				},
+				"cityNM": {
+					"type": "string",
+					"description": ""
+				},
+				"stateCD": {
+					"type": "string",
+					"description": ""
+				},
+				"countryCD": {
+					"type": "string",
+					"description": ""
+				},
+				"latitude": {
+					"type": "integer",
+					"description": ""
+				},
+				"longitute": {
+					"type": "integer",
+					"description": ""
+				}
+			}
+		},
+		"TLCarrierContact": {
+			"type": "object",
+			"description": "",
+			"properties": {
+				"contactFirstNM": {
+					"type": "string",
+					"description": ""
+				},
+				"contactLastNM": {
+					"type": "string",
+					"description": ""
+				},
+				"contactRoleNM": {
+					"type": "string",
+					"description": ""
+				},
+				"contactSequenceOrderNB": {
+					"type": "integer",
+					"format": "int32",
+					"description": ""
+				},
+				"contactTypeNM": {
+					"type": "string",
+					"description": ""
+				},
+				"emailAddressTX": {
+					"type": "string",
+					"description": ""
+				},
+				"mobilePhoneNB": {
+					"type": "string",
+					"description": ""
+				},
+				"phoneNB": {
+					"type": "string",
+					"description": ""
+				},
+				"tlcarrierAddressKEY": {
+					"type": "integer",
+					"format": "int32",
+					"description": ""
+				},
+				"tlcarrierContactKEY": {
+					"type": "integer",
+					"format": "int32",
+					"description": ""
+				},
+				"tLContactRoleKEY": {
+					"type": "integer",
+					"format": "int32",
+					"description": ""
+				},
+				"tlContactTypeKEY": {
+					"type": "integer",
+					"format": "int32",
+					"description": ""
+				}
+			}
+		},
+		"TLCarrierDutyClassification": {
+			"type": "object",
+			"description": "",
+			"properties": {
+				"gvwrdutyClassificationTypeNM": {
+					"type": "string",
+					"description": ""
+				},
+				"tlcarrierDutyClassificationKEY": {
+					"type": "integer",
+					"format": "int32",
+					"description": ""
+				},
+				"tlcarrierKEY": {
+					"type": "integer",
+					"format": "int32",
+					"description": ""
+				},
+				"tlgvwrdutyClassificationTypeKEY": {
+					"type": "integer",
+					"format": "int32",
+					"description": ""
+				}
+			}
+		},
+		"TLCarrierLane": {
+			"type": "object",
+			"description": "",
+			"properties": {
+				"permanentLaneIN": {
+					"type": "string",
+					"description": ""
+				},
+				"tlcarrierKEY": {
+					"type": "integer",
+					"format": "int32",
+					"description": ""
+				},
+				"tlcarrierLaneKEY": {
+					"type": "integer",
+					"format": "int32",
+					"description": ""
+				},
+				"tlcarrierLaneTrailer": {
+					"type": "array",
+					"description": "",
+					"items": {
+						"type": "object",
+						"description": "",
+						"properties": {
+							"estimatedCostAMT": {
+								"type": "number",
+								"description": ""
+							},
+							"lastDataCollectionDT": {
+								"type": "string",
+								"format": "date-time",
+								"description": ""
+							},
+							"tlcarrierLaneKEY": {
+								"type": "integer",
+								"format": "int32",
+								"description": ""
+							},
+							"tlcarrierLaneTrailerDOW": {
+								"type": "array",
+								"description": "",
+								"items": {
+									"type": "object",
+									"description": "",
+									"properties": {
+										"dayOfWeekNB": {
+											"type": "integer",
+											"format": "int32",
+											"description": ""
+										},
+										"dayOfWeekNM": {
+											"type": "string",
+											"description": ""
+										},
+										"dowrunQT": {
+											"type": "integer",
+											"format": "int32",
+											"description": ""
+										},
+										"tlcarrierLaneTrailerDOWKEY": {
+											"type": "integer",
+											"format": "int32",
+											"description": ""
+										},
+										"tlcarrierLaneTrailerKEY": {
+											"type": "integer",
+											"format": "int32",
+											"description": ""
+										},
+										"dayOfWeekAbbr2CD": {
+											"type": "string",
+											"description": ""
+										}
+									}
+								}
+							},
+							"tlcarrierLaneTrailerKEY": {
+								"type": "integer",
+								"format": "int32",
+								"description": ""
+							},
+							"tltrailerClassKEY": {
+								"type": "integer",
+								"format": "int32",
+								"description": ""
+							},
+							"tltrailerSubTypeKEY": {
+								"type": "integer",
+								"format": "int32",
+								"description": ""
+							},
+							"tltrailerSubTypeNM": {
+								"type": "string",
+								"description": ""
+							},
+							"tltrailerTypeKEY": {
+								"type": "integer",
+								"format": "int32",
+								"description": ""
+							},
+							"tltrailerTypeNM": {
+								"type": "string",
+								"description": ""
+							},
+							"trailerAvailableQT": {
+								"type": "integer",
+								"format": "int32",
+								"description": ""
+							},
+							"trailerLengthinFeetQT": {
+								"type": "integer",
+								"format": "int32",
+								"description": ""
+							}
+						}
+					}
+				},
+				"tllaneKEY": {
+					"type": "integer",
+					"format": "int32",
+					"description": ""
+				},
+				"tlLane": {
+					"type": "object",
+					"description": "",
+					"items": {
+						"type": "object",
+						"description": "",
+						"properties": {
+							"tLLaneKEY": {
+								"type": "integer",
+								"description": ""
+							},
+							"postalAreaOriginKEY": {
+								"type": "integer",
+								"format": "int32",
+								"description": ""
+							},
+							"postalAreaDestinationKEY": {
+								"type": "integer",
+								"format": "int32",
+								"description": ""
+							},
+							"postalAreaOrigin": {
+								"type": "object",
+								"description": "",
+								"items": {
+									"type": "object",
+									"description": "",
+									"properties": {
+										"postalAreaKEY": {
+											"type": "integer",
+											"description": ""
+										},
+										"postalCD": {
+											"type": "string",
+											"description": ""
+										},
+										"cityNM": {
+											"type": "string",
+											"description": ""
+										},
+										"stateCD": {
+											"type": "string",
+											"description": ""
+										},
+										"countryCD": {
+											"type": "string",
+											"description": ""
+										},
+										"latitude": {
+											"type": "integer",
+											"description": ""
+										},
+										"longitute": {
+											"type": "integer",
+											"description": ""
+										}
+									}
+								}
+							},
+							"postalAreaDestination": {
+								"type": "object",
+								"description": "",
+								"items": {
+									"type": "object",
+									"description": "",
+									"properties": {
+										"postalAreaKEY": {
+											"type": "integer",
+											"description": ""
+										},
+										"postalCD": {
+											"type": "string",
+											"description": ""
+										},
+										"cityNM": {
+											"type": "string",
+											"description": ""
+										},
+										"stateCD": {
+											"type": "string",
+											"description": ""
+										},
+										"countryCD": {
+											"type": "string",
+											"description": ""
+										},
+										"latitude": {
+											"type": "integer",
+											"description": ""
+										},
+										"longitute": {
+											"type": "integer",
+											"description": ""
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"TLCarrierLaneTrailer": {
+			"type": "object",
+			"description": "",
+			"properties": {
+				"estimatedCostAMT": {
+					"type": "number",
+					"description": ""
+				},
+				"lastDataCollectionDT": {
+					"type": "string",
+					"format": "date-time",
+					"description": ""
+				},
+				"tlcarrierLaneKEY": {
+					"type": "integer",
+					"format": "int32",
+					"description": ""
+				},
+				"tlcarrierLaneTrailerDOW": {
+					"type": "array",
+					"description": "",
+					"items": {
+						"type": "object",
+						"description": "",
+						"properties": {
+							"dayOfWeekNB": {
+								"type": "integer",
+								"format": "int32",
+								"description": ""
+							},
+							"dayOfWeekNM": {
+								"type": "string",
+								"description": ""
+							},
+							"dowrunQT": {
+								"type": "integer",
+								"format": "int32",
+								"description": ""
+							},
+							"tlcarrierLaneTrailerDOWKEY": {
+								"type": "integer",
+								"format": "int32",
+								"description": ""
+							},
+							"tlcarrierLaneTrailerKEY": {
+								"type": "integer",
+								"format": "int32",
+								"description": ""
+							},
+							"dayOfWeekAbbr2CD": {
+								"type": "string",
+								"description": ""
+							}
+						}
+					}
+				},
+				"tlcarrierLaneTrailerKEY": {
+					"type": "integer",
+					"format": "int32",
+					"description": ""
+				},
+				"tltrailerClassKEY": {
+					"type": "integer",
+					"format": "int32",
+					"description": ""
+				},
+				"tltrailerSubTypeKEY": {
+					"type": "integer",
+					"format": "int32",
+					"description": ""
+				},
+				"tltrailerSubTypeNM": {
+					"type": "string",
+					"description": ""
+				},
+				"tltrailerTypeKEY": {
+					"type": "integer",
+					"format": "int32",
+					"description": ""
+				},
+				"tltrailerTypeNM": {
+					"type": "string",
+					"description": ""
+				},
+				"trailerAvailableQT": {
+					"type": "integer",
+					"format": "int32",
+					"description": ""
+				},
+				"trailerLengthinFeetQT": {
+					"type": "integer",
+					"format": "int32",
+					"description": ""
+				}
+			}
+		},
+		"TLCarrierLaneTrailerDOW": {
+			"type": "object",
+			"description": "",
+			"properties": {
+				"dayOfWeekNB": {
+					"type": "integer",
+					"format": "int32",
+					"description": ""
+				},
+				"dayOfWeekNM": {
+					"type": "string",
+					"description": ""
+				},
+				"dowrunQT": {
+					"type": "integer",
+					"format": "int32",
+					"description": ""
+				},
+				"tlcarrierLaneTrailerDOWKEY": {
+					"type": "integer",
+					"format": "int32",
+					"description": ""
+				},
+				"tlcarrierLaneTrailerKEY": {
+					"type": "integer",
+					"format": "int32",
+					"description": ""
+				},
+				"dayOfWeekAbbr2CD": {
+					"type": "string",
+					"description": ""
+				}
+			}
+		},
+		"TLCarrierResponse": {
+			"type": "object",
+			"description": ""
+		},
+		"TLCarrierTrailer": {
+			"type": "object",
+			"description": "",
+			"properties": {
+				"tlcarrierKEY": {
+					"type": "integer",
+					"format": "int32",
+					"description": ""
+				},
+				"tlcarrierTrailerKEY": {
+					"type": "integer",
+					"format": "int32",
+					"description": ""
+				},
+				"tltrailerClassKEY": {
+					"type": "integer",
+					"format": "int32",
+					"description": ""
+				},
+				"tltrailerSubTypeKEY": {
+					"type": "integer",
+					"format": "int32",
+					"description": ""
+				},
+				"tltrailerSubTypeNM": {
+					"type": "string",
+					"description": ""
+				},
+				"tltrailerTypeKEY": {
+					"type": "integer",
+					"format": "int32",
+					"description": ""
+				},
+				"tltrailerTypeNM": {
+					"type": "string",
+					"description": ""
+				},
+				"trailerLengthinFeetQT": {
+					"type": "integer",
+					"format": "int32",
+					"description": ""
+				},
+				"trailerQT": {
+					"type": "integer",
+					"format": "int32",
+					"description": ""
+				}
+			}
+		}
+	}
+}

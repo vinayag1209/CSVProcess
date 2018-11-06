@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7"/>
+	<classpathentry kind="lib" path="C:/jars/commons-lang3-3.6.jar"/>
+	<classpathentry kind="lib" path="C:/jars/opencsv-4.0.jar"/>
+	<classpathentry kind="lib" path="C:/jars/poi-bin-3.17-20170915/poi-3.17/poi-3.17.jar"/>
+	<classpathentry kind="lib" path="C:/jars/poi-bin-3.17-20170915/poi-3.17/poi-examples-3.17.jar"/>
+	<classpathentry kind="lib" path="C:/jars/poi-bin-3.17-20170915/poi-3.17/poi-excelant-3.17.jar"/>
+	<classpathentry kind="lib" path="C:/jars/poi-bin-3.17-20170915/poi-3.17/poi-ooxml-3.17.jar"/>
+	<classpathentry kind="lib" path="C:/jars/poi-bin-3.17-20170915/poi-3.17/poi-ooxml-schemas-3.17.jar"/>
+	<classpathentry kind="lib" path="C:/jars/poi-bin-3.17-20170915/poi-3.17/poi-scratchpad-3.17.jar"/>
+	<classpathentry kind="lib" path="C:/jars/commons-net-3.6.jar"/>
+	<classpathentry kind="lib" path="C:/jars/commons-csv-1.6.jar" sourcepath="C:/Users/uyr334f/.m2/repository/org/apache/commons/commons-csv/1.6/commons-csv-1.6-sources.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
