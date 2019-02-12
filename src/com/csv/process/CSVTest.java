@@ -12,6 +12,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
@@ -32,7 +33,7 @@ import com.csv.model.MasterZip;
 
 public class CSVTest {
 
-	private static String destinationCSVFile = "C:/jars/convertedChris_Nov5_18.csv";
+	private static String destinationCSVFile = "C:/jars/convertedChris_Feb12.csv";
 	
 	private static String carrierRangeCSV = "C:/3G-TM/TransitFiles/Carrier Range.csv";
 	private static String masterZipsCSV = "C:/3G-TM/TransitFiles/Master Zips.csv";
@@ -52,76 +53,14 @@ public class CSVTest {
 	public static void main(String[] args) throws IOException {
 
 		processCSV();
-		
-		//processTransitFiles();
-		
 
-		/*
-		 * for (ZipCodeZone zipzone : zipszones){
-		 * System.out.println("in main for loop"); System.out.println("Zip " +
-		 * zipzone.getZipCode() + " Zone " + zipzone.getZone()); }
-		 */
 
-	}
-
-	private static void processTransitFiles() throws IOException {
-		// calling readcsv to create list of objects from all CSVs. 
-		readCSV();
-		/* Pre-output file
-		 * go through list of masterzips, - for each zip 
-		 * check which carrier services the zip by checking in which carrier
-		 * range of zips the master zip falls in
-		 * once carrier found - go to list of zipTerminals of that carrier. 
-		 * Find terminal/servOut/daysOut/servIn/daysIn for that zipcode
-		 * populate PreOutput object with these values
-		 * add it to a list of PreOutput objects
-		 * end for each
-		 * print it out to a csv file
-		 */
-		
-		//create ranges out of carrierrange data
-		
-		for(MasterZip zip: masterZips){
-			
-			try{
-				//find range and carrier for zip
-				String carrier = checkCarrierRangeForZip(zip);
-				
-				//if carrier is SEKW, process SEKW zip-Terminal List
-				if(carrier.equalsIgnoreCase("SEKW")){
-					Predicate<CarrierZipTerminal> zipMatch = null; 
-					Optional<CarrierZipTerminal> matchingZipTerminal = sekwZips.stream()
-							.filter(zipMatch).findFirst();
-					
-				}
-			
-			}catch(Exception e){
-				e.printStackTrace();
-			}
-			
-		}
-		
-	}
-
-	private static String checkCarrierRangeForZip(MasterZip zip) throws Exception {
-		String carrier = "";
-		for(CarrierRange range: carrierrangeZips){
-			Range<Integer> zipRange = Range.between(range.getLowZip(), range.getHighZip());
-			if(zipRange.contains(zip.getZipCode())){
-				carrier = range.getCarrier();
-				break;
-			}
-		}
-		if(StringUtils.isAnyEmpty(carrier)){
-			return carrier;
-		}else{
-			throw new Exception("No Carrier Range Found");
-		}
-		
 	}
 
 	private static void processCSV() {
-		List<ZipCodeZone> zipszones = readZipsFromCSV("C:/jars/Chris_Nov5_18.csv");
+		List<ZipCodeZone> zipszones = readZipsFromCSV("C:/jars/Chris_Feb12.csv");
+		//find a way to sort based on zips - java versions causing issues
+		//Collections.sort(zipszones);
 		List<ZipZoneResult> result = writeResult(zipszones);
 		System.out.println("converting and printing");
 		convertAndPrint(result);
